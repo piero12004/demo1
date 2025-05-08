@@ -32,7 +32,7 @@
         <div class="container-fluid">
       
           <div class="d-flex flex-column align-items-center me-4">
-            <img src="/src/main/resources/static/imagenes/CINE_HH.jpg" alt="logo" style="width: 60px; height: auto;">
+            <img src="/imagenes/CINE_HH.jpg" alt="logo" style="width: 60px; height: auto;">
             <a class="navbar-brand mt-1" href="#">CINEHH</a>
           </div>
       
@@ -71,14 +71,14 @@
           </div>
     <script>
         const tarjetasInfo = [
-                    { index: 1, title: "Contador 2", text: "24 de abril", imgSrc: "/src/main/resources/static/imagenes/Contador.jpg" },
-                    { index: 2, title: "Megatormenta", text: "24 de abril", imgSrc: "/src/main/resources/static/imagenes/Mega.jpg" },
-                    { index: 3, title: "Until Down: Noche de terror", text: "24 de abril", imgSrc: "/src/main/resources/static/imagenes/Until.jpg" },
-                    { index: 4, title: "El día que la Tierra explotó: Looney Tunes", text: "24 de abril", imgSrc: "/src/main/resources/static/imagenes/loo.jpg" },
-                    { index: 5, title: "Thunderbolts", text: "1 de mayo", imgSrc: "/src/main/resources/static/imagenes/thunder.jpg" },
-                    { index: 6, title: "Karate Kid: Leyendas", text: "8 de mayo", imgSrc: "/src/main/resources/static/imagenes/karat.jpg" },
-                    { index: 7, title: "Lilo y stich", text: "22 de mayo", imgSrc: "/src/main/resources/static/imagenes/Lilo.jpg" },
-                    { index: 8, title: "Sneaks: un par con suerte", text: "1 de mayo", imgSrc: "/src/main/resources/static/imagenes/snea.jpg" },
+                    { index: 1, title: "Contador 2", text: "24 de abril", imgSrc: "/imagenes/Contador.jpg" },
+                    { index: 2, title: "Megatormenta", text: "24 de abril", imgSrc: "/imagenes/Mega.jpg" },
+                    { index: 3, title: "Until Down: Noche de terror", text: "24 de abril", imgSrc: "/imagenes/Until.jpg" },
+                    { index: 4, title: "El día que la Tierra explotó: Looney Tunes", text: "24 de abril", imgSrc: "/imagenes/loo.jpg" },
+                    { index: 5, title: "Thunderbolts", text: "1 de mayo", imgSrc: "/imagenes/thunder.jpg" },
+                    { index: 6, title: "Karate Kid: Leyendas", text: "8 de mayo", imgSrc: "/imagenes/karat.jpg" },
+                    { index: 7, title: "Lilo y stich", text: "22 de mayo", imgSrc: "/imagenes/Lilo.jpg" },
+                    { index: 8, title: "Sneaks: un par con suerte", text: "1 de mayo", imgSrc: "/imagenes/snea.jpg" },
                 ];
      
      const NcardsContainer = document.getElementById('cards-Container');
@@ -117,9 +117,9 @@
             <div class="col-md-4 mb-3">
               <h5>Enlaces</h5>
               <ul class="list-unstyled">
-                <li><a href="PRINCIPAL.html" class="text-light text-decoration-none">Inicio</a></li>
-                <li><a href="cartelera.html" class="text-light text-decoration-none">Cartelera</a></li>
-                <li><a href="Contacto.html" class="text-light text-decoration-none">Contacto</a></li>
+                <li><a href="@{/PRINCIPAL}" class="text-light text-decoration-none">Inicio</a></li>
+                <li><a href="@{/cartelera}" class="text-light text-decoration-none">Cartelera</a></li>
+                <li><a href="@{/Contacto}" class="text-light text-decoration-none">Contacto</a></li>
               </ul>
             </div>
       

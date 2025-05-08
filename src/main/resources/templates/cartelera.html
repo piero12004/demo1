@@ -14,7 +14,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <div class="d-flex flex-column align-items-center me-4">
-        <img src="/src/main/resources/static/imagenes/CINE_HH.jpg" alt="logo" style="width: 60px; height: auto;">
+        <img src="/imagenes/CINE_HH.jpg" alt="logo" style="width: 60px; height: auto;">
         <a class="navbar-brand mt-1" th:href="@{/PRINCIPAL}">CINEHH</a>
       </div>
 
@@ -59,22 +59,22 @@
 
   <script>
     const tarjetasInfo = [
-      { title: "Avengers", text: "", imgSrc: "/src/main/resources/static/imagenes/Avengers.jpg" },
-      { title: "Intensamente 2", text: "", imgSrc: "/src/main/resources/static/imagenes/Intensamente.jpg" },
-      { title: "Minecraft", text: "", imgSrc: "/src/main/resources/static/imagenes/Minecraft.jpg" },
-      { title: "Nosferatu", text: "", imgSrc: "/src/main/resources/static/imagenes/Nosferatu.jpg" },
-      { title: "Mufasa", text: "", imgSrc: "/src/main/resources/static/imagenes/Mufasa.jpg" },
-      { title: "Spider-man", text: "", imgSrc: "/src/main/resources/static/imagenes/Spiderman.jpg" },
-      { title: "Mi villano Favorito", text: "", imgSrc: "/src/main/resources/static/imagenes/Mi Villano Favorito.jpg" },
+      { title: "Avengers", text: "", imgSrc: "/imagenes/Avengers.jpg" },
+      { title: "Intensamente 2", text: "", imgSrc: "/imagenes/Intensamente.jpg" },
+      { title: "Minecraft", text: "", imgSrc: "/imagenes/Minecraft.jpg" },
+      { title: "Nosferatu", text: "", imgSrc: "/imagenes/Nosferatu.jpg" },
+      { title: "Mufasa", text: "", imgSrc: "/imagenes/Mufasa.jpg" },
+      { title: "Spider-man", text: "", imgSrc: "/imagenes/Spiderman.jpg" },
+      { title: "Mi villano Favorito", text: "", imgSrc: "/imagenes/Mi Villano Favorito.jpg" },
       { title: "Blanca Nieves", text: "", imgSrc: "imagenes/Blanca Nieves.jpg" },
-      { title: "Flow", text: "", imgSrc: "/src/main/resources/static/imagenes/Flow.jpg" },
-      { title: "Soltera * Casada * Viuda * Divorciada", text: "", imgSrc: "/src/main/resources/static/imagenes/Soltera.jpg" },
-      { title: "Venom", text: "", imgSrc: "/src/main/resources/static/imagenes/Venom.jpg" },
-      { title: "Mision Imposible", text: "", imgSrc: "/src/main/resources/static/imagenes/Mision Imposible.jpg" },
-      { title: "SAW", text: "", imgSrc: "/src/main/resources/static/imagenes/Saw.jpg" },
-      { title: "Batman", text: "", imgSrc: "/src/main/resources/static/imagenes/Batman.jpg" },
-      { title: "Sonic", text: "", imgSrc: "/src/main/resources/static/imagenes/Sonic.jpg" },
-      { title: "El conjuro", text: "", imgSrc: "/src/main/resources/static/imagenes/El conjuro.jpg" }
+      { title: "Flow", text: "", imgSrc: "/imagenes/Flow.jpg" },
+      { title: "Soltera * Casada * Viuda * Divorciada", text: "", imgSrc: "/imagenes/Soltera.jpg" },
+      { title: "Venom", text: "", imgSrc: "/imagenes/Venom.jpg" },
+      { title: "Mision Imposible", text: "", imgSrc: "/imagenes/Mision Imposible.jpg" },
+      { title: "SAW", text: "", imgSrc: "/imagenes/Saw.jpg" },
+      { title: "Batman", text: "", imgSrc: "/imagenes/Batman.jpg" },
+      { title: "Sonic", text: "", imgSrc: "/imagenes/Sonic.jpg" },
+      { title: "El conjuro", text: "", imgSrc: "/imagenes/El conjuro.jpg" }
     ];
 
     document.addEventListener("DOMContentLoaded", () => {
@@ -107,12 +107,12 @@
         </div>
         <!-- Enlaces rápidos -->
         <div class="col-md-4 mb-3">
-          <h5>Enlaces</h5>
-          <ul class="list-unstyled">
-            <li><a href="PRINCIPAL.html" class="text-light text-decoration-none">Inicio</a></li>
-            <li><a href="cartelera.html" class="text-light text-decoration-none">Cartelera</a></li>
-            <li><a href="Contacto.html" class="text-light text-decoration-none">Contacto</a></li>
-          </ul>
+            <h5>Enlaces</h5>
+            <ul class="list-unstyled">
+              <li><a href="@{/PRINCIPAL}" class="text-light text-decoration-none">Inicio</a></li>
+              <li><a href="@{/cartelera}" class="text-light text-decoration-none">Cartelera</a></li>
+              <li><a href="@{/Contacto}" class="text-light text-decoration-none">Contacto</a></li>
+            </ul>
         </div>
         <!-- Contacto y redes -->
         <div class="col-md-4 mb-3">

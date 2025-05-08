@@ -15,7 +15,7 @@
       <div class="container-fluid">
     
         <div class="d-flex flex-column align-items-center me-4">
-          <img src="/src/main/resources/static/imagenes/CINE_HH.jpg" alt="logo" style="width: 60px; height: auto;">
+          <img src="/imagenes/CINE_HH.jpg" alt="logo" style="width: 60px; height: auto;">
           <a class="navbar-brand mt-1" href="#">CINEHH</a>
         </div>
     
@@ -62,16 +62,16 @@
         <!-- Imágenes -->
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="/src/main/resources/static/imagenes/mine.png" class="d-block w-100 img-fluid" alt="...">
+            <img src="/imagenes/mine.png" class="d-block w-100 img-fluid" alt="...">
           </div>
           <div class="carousel-item">
-            <img src="/src/main/resources/static/imagenes/snowhite.png" class="d-block w-100 img-fluid" alt="...">
+            <img src="/imagenes/snowhite.png" class="d-block w-100 img-fluid" alt="...">
           </div>
           <div class="carousel-item">
-            <img src="/src/main/resources/static/imagenes/soltera.png" class="d-block w-100 img-fluid" alt="...">
+            <img src="/imagenes/soltera.png" class="d-block w-100 img-fluid" alt="...">
           </div>
           <div class="carousel-item">
-            <img src="/src/main/resources/static/imagenes/flow .png" class="d-block w-100 img-fluid" alt="...">
+            <img src="/imagenes/flow .png" class="d-block w-100 img-fluid" alt="...">
           </div>
         </div>
     
@@ -101,31 +101,31 @@
         index: 1,
         title: "Minecraft",
         text: "Del videojuego al cine: una aventura de píxeles convertida en película.",
-        imgSrc: "/src/main/resources/static/imagenes/mine_card.png"
+        imgSrc: "/imagenes/mine_card.png"
       },
       {
         index: 2,
         title: "Flow",
         text: "Un gato que busca sobrevivir en un mundo postapocalíptico",
-        imgSrc: "/src/main/resources/static/imagenes/flow_card.png"
+        imgSrc: "/imagenes/flow_card.png"
       },
       {
         index: 3,
         title: "Blancanieves",
         text: "Una nueva versión de acción real del clásico de 1937.",
-        imgSrc: "/src/main/resources/static/imagenes/blanca_card.png"
+        imgSrc: "/imagenes/blanca_card.png"
       },
       {
         index: 4,
         title: "Soltera, Casada, Viuda, Divorciada 2",
         text: "Cuatro amigas emprenden un viaje a la nieve",
-        imgSrc: "/src/main/resources/static/imagenes/scvd2_card.png"
+        imgSrc: "/imagenes/scvd2_card.png"
       },
       {
         index: 5,
         title: "Amatheur: Operación Venganza",
         text: "Un agente de la CIA buscando venganza",
-        imgSrc: "/src/main/resources/static/imagenes/amatheur_card.png"
+        imgSrc: "/imagenes/amatheur_card.png"
       }
     ];
 
@@ -164,9 +164,9 @@ tarjetasInfo.forEach(info => {
           <div class="col-md-4 mb-3">
             <h5>Enlaces</h5>
             <ul class="list-unstyled">
-              <li><a href="PRINCIPAL.html" class="text-light text-decoration-none">Inicio</a></li>
-              <li><a href="cartelera.html" class="text-light text-decoration-none">Cartelera</a></li>
-              <li><a href="Contacto.html" class="text-light text-decoration-none">Contacto</a></li>
+              <li><a href="@{/PRINCIPAL}" class="text-light text-decoration-none">Inicio</a></li>
+              <li><a href="@{/cartelera}" class="text-light text-decoration-none">Cartelera</a></li>
+              <li><a href="@{/Contacto}" class="text-light text-decoration-none">Contacto</a></li>
             </ul>
           </div>
     
