@@ -5,6 +5,7 @@ package com.proyecto.demo1.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,14 +22,20 @@ public class peliculaController {
         this.AgregarPelicula = AgregarPelicula;
     }
 
-@PostMapping("/guardarPelicula")
-public String guardarPelicula(@ModelAttribute Pelicula pelicula, @RequestParam("urlP") MultipartFile urlP, Model model){
-    String nombreArchivo = urlP.getOriginalFilename();
-    //Path ruta = Paths.get("src/main/resources/static/imagenes",nombreArchivo);
-    pelicula.setImg("/imagenes/" + nombreArchivo);
-    AgregarPelicula.añadirPelicula(pelicula);
-    model.addAttribute("peliculas",AgregarPelicula.getPeliculas());
-    return "cartelera";
-}
+    @PostMapping("/guardarPelicula")
+    public String guardarPelicula(@ModelAttribute Pelicula pelicula, @RequestParam("urlP") MultipartFile urlP, Model model){
+        String nombreArchivo = urlP.getOriginalFilename();
+        
+        pelicula.setImg("/imagenes/" + nombreArchivo);
+        AgregarPelicula.añadirPelicula(pelicula);
+        model.addAttribute("peliculas",AgregarPelicula.getPeliculas());
+        return "cartelera";
+    }
+
+    @GetMapping("/AgregarPelicula")
+    public String mostrarFormularioAgregarPelicula(Model model) {
+        model.addAttribute("pelicula", new Pelicula());
+        return "agregarPelicula";
+    }
 }
 

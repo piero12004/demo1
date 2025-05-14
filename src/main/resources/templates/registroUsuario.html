@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Usuario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container mt-5">
+    <h2 class="text-center">Registrar Nuevo Usuario</h2>
+    <form th:action="@{/guardarUsuario}" th:object="${usuario}" method="post" class="w-50 mx-auto mt-4">
+        <div class="mb-3">
+            <label class="form-label">Usuario</label>
+            <input type="text" th:field="*{usuario}" class="form-control" placeholder="Ingrese nombre de usuario" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Contraseña</label>
+            <input type="password" th:field="*{contrasenia}" class="form-control" placeholder="Ingrese contraseña" required>
+        </div>
+        <button type="submit" class="btn btn-success w-100">Registrar</button>
+
+        <!-- Botones de navegación adaptables -->
+        <div class="row mt-3">
+            <div class="col-12 col-md-6 mb-2 mb-md-0">
+                <a th:href="@{/PRINCIPAL}" class="btn btn-secondary w-100">Volver a Principal</a>
+            </div>
+            <div class="col-12 col-md-6">
+                <a th:href="@{/login}" class="btn btn-outline-primary w-100">Iniciar Sesión</a>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
+
+
+

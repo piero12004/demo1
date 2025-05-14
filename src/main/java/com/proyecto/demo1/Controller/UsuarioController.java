@@ -10,32 +10,34 @@ import com.proyecto.demo1.Model.Usuario;
 import com.proyecto.demo1.Service.UsuarioService;
 
 @Controller
-public class UsuarioController{
+public class UsuarioController {
     private final UsuarioService usuarioService;
 
-    public UsuarioController(UsuarioService usuarioService){
-        this.usuarioService=usuarioService;
+    public UsuarioController(UsuarioService usuarioService) {
+        this.usuarioService = usuarioService;
     }
-    
 
-    @GetMapping("/login")
-    public String formularioUsuario(Model model){
+    // Página de formulario para registrar usuario
+    @GetMapping("/registro")
+    public String mostrarFormularioRegistro(Model model) {
         model.addAttribute("usuario", new Usuario("", ""));
-        return "/usu";
+        return "registroUsuario"; 
     }
 
-    @GetMapping("/login")
-    public String mostrarListaUsuario(Model model){
-        model.addAttribute("usuarios", usuarioService.obteneUsuarios());
-        return"";
-    }
 
+    // Guardar usuario (localmente) y redirigir al listado
     @PostMapping("/guardarUsuario")
-    public String guardarUsuario(@ModelAttribute Usuario usuario){
+    public String guardarUsuario(@ModelAttribute Usuario usuario) {
         usuarioService.agregarUsuario(usuario);
-        return"";
+        return "redirect:/PRINCIPAL"; 
     }
-    
 
+    // Mostrar lista de usuarios registrados
+    @GetMapping("/listaUsuarios")
+    public String mostrarListaUsuarios(Model model) {
+    model.addAttribute("usuarios", usuarioService.obteneUsuarios());
+    return "listaUsuarios"; 
+    }
 
 }
+

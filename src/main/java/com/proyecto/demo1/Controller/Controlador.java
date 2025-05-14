@@ -37,7 +37,7 @@ public class Controlador {
     public String validarLogin(@RequestParam String usuario, @RequestParam String clave, Model model) {
         if (usuario.equals("piero") && clave.equals("12004")) {
             
-            return "adminpag";
+            return "admin";
         } else {
             model.addAttribute("error", "Usuario o clave incorrectos");
             return "login";

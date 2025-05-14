@@ -4,6 +4,11 @@ public class Pelicula {
     private String nombreP;
     private String Img;
 
+
+    public Pelicula(){
+
+    }
+    
     public Pelicula(String nombreP, String Img){
         this.nombreP = nombreP;
         this.Img = Img;
