@@ -50,7 +50,7 @@
     </nav>   
 
 <div class="container mt-5">
-    <h2 class="text-center mb-4">Ventas aleatorias por mes</h2>
+    <h2 class="text-center mb-4">Ventas por mes</h2>
 
     <div class="mb-3 text-end">
         <label for="tipoGrafico" class="form-label">Tipo de gráfico:</label>
@@ -80,8 +80,8 @@
 /*<![CDATA[*/
 const etiquetas = /*[[${etiquetas}]]*/ [];
 const valores = /*[[${valores}]]*/ [];
-console.log("Etiquetas:", etiquetas);
-console.log("Valores:", valores);
+console.log("Etiquetas JS:", etiquetas);
+console.log("Valores JS:", valores);
 /*]]>*/
 </script>
 
@@ -97,6 +97,8 @@ let chart = new Chart(ctx, {
         datasets: [{
             label: 'Ventas (100 - 3000)',
             data: valores,
+            fill: false,
+            tension: 0.4,
             backgroundColor: [
                 'rgba(75, 192, 192, 0.6)',
                 'rgba(153, 102, 255, 0.6)',
@@ -105,8 +107,9 @@ let chart = new Chart(ctx, {
                 'rgba(54, 162, 235, 0.6)',
                 'rgba(255, 206, 86, 0.6)'
             ],
-            borderColor: 'rgba(0, 0, 0, 0.1)',
-            borderWidth: 1
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 2,
+            showLine: true
         }]
     },
     options: {
@@ -131,6 +134,8 @@ document.getElementById('tipoGrafico').addEventListener('change', function () {
             datasets: [{
                 label: 'Ventas (100 - 3000)',
                 data: valores,
+                fill: false,
+                tension: 0.4,
                 backgroundColor: [
                     'rgba(75, 192, 192, 0.6)',
                     'rgba(153, 102, 255, 0.6)',
@@ -139,8 +144,9 @@ document.getElementById('tipoGrafico').addEventListener('change', function () {
                     'rgba(54, 162, 235, 0.6)',
                     'rgba(255, 206, 86, 0.6)'
                 ],
-                borderColor: 'rgba(0, 0, 0, 0.1)',
-                borderWidth: 1
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 2,
+                showLine: true
             }]
         },
         options: {
@@ -156,6 +162,7 @@ document.getElementById('tipoGrafico').addEventListener('change', function () {
     });
 });
 </script>
+
 
 </body>
 </html>

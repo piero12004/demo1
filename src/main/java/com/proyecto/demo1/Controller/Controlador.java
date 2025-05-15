@@ -39,7 +39,7 @@ public class Controlador {
     public String validarLogin(@RequestParam String usuario, @RequestParam String clave, Model model) {
         if (usuario.equals("piero") && clave.equals("12004")) {
             
-            return "admin";
+            return "redirect:/admin";
         } else {
             model.addAttribute("error", "Usuario o clave incorrectos");
             return "login";
@@ -49,12 +49,16 @@ public class Controlador {
 
     @GetMapping("/admin")
     public String mostrarGrafico(Model model) {
-    List<String> etiquetas = Arrays.asList("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio");
-    List<Integer> valores = Arrays.asList(100, 500, 1500, 2500, 1800, 3000);
-    model.addAttribute("etiquetas", etiquetas);
-    model.addAttribute("valores", valores);
-    return "admin";
+        List<String> etiquetas = Arrays.asList("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio");
+        List<Integer> valores = Arrays.asList(100, 500, 1500, 2500, 1800, 3000);
+
+        model.addAttribute("etiquetas", etiquetas);
+        model.addAttribute("valores", valores);
+
+        return "admin"; 
+    }
+
 }
 
     
-}
+
