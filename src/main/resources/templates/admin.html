@@ -68,6 +68,24 @@
     </div>
 </div>
 
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Usuarios registrados por mes</h2>
+
+    <div class="mb-3 text-end">
+        <label for="tipoGrafico" class="form-label">Tipo de gráfico:</label>
+        <select id="tipoGrafico" class="form-select w-auto d-inline">
+            <option value="bar" selected>Barras</option>
+            <option value="line">Línea</option>
+            <option value="pie">Pastel</option>
+        </select>
+    </div>
+
+    <div class="card p-4 shadow-sm">
+        <div class="chart-container">
+            <canvas id="GraficoUsuarios"></canvas>
+        </div>
+    </div>
+</div>
 <style>
 .chart-container {
     position: relative;
@@ -162,7 +180,92 @@ document.getElementById('tipoGrafico').addEventListener('change', function () {
     });
 });
 </script>
+<script th:inline="javascript">
+/*<![CDATA[*/
+const etiquetas2 = /*[[${etiquetas2}]]*/ [];
+const valores2 = /*[[${valores2}]]*/ [];
+console.log("Etiquetas JS:", etiquetas2);
+console.log("Valores JS:", valores2);
+/*]]>*/
+</script>
 
+
+<script>
+const ctx2 = document.getElementById('GraficoUsuarios').getContext('2d');
+let tipoActual2 = 'bar';
+
+let chart2 = new Chart(ctx2, {
+    type: tipoActual,
+    data: {
+        labels: etiquetas2,
+        datasets: [{
+            label: 'Ventas (100 - 3000)',
+            data: valores2,
+            fill: false,
+            tension: 0.4,
+            backgroundColor: [
+                'rgba(75, 192, 192, 0.6)',
+                'rgba(153, 102, 255, 0.6)',
+                'rgba(255, 159, 64, 0.6)',
+                'rgba(255, 99, 132, 0.6)',
+                'rgba(54, 162, 235, 0.6)',
+                'rgba(255, 206, 86, 0.6)'
+            ],
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 2,
+            showLine: true
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                beginAtZero: true,
+                max: 3200
+            }
+        }
+    }
+});
+
+document.getElementById('tipoGrafico').addEventListener('change', function () {
+    const nuevoTipo = this.value;
+    chart.destroy();
+    chart = new Chart(ctx2, {
+        type: nuevoTipo,
+        data: {
+            labels: etiquetas2,
+            datasets: [{
+                label: 'Ventas (100 - 3000)',
+                data: valores2,
+                fill: false,    
+                tension: 0.4,
+                backgroundColor: [
+                    'rgba(75, 192, 192, 0.6)',
+                    'rgba(153, 102, 255, 0.6)',
+                    'rgba(255, 159, 64, 0.6)',
+                    'rgba(255, 99, 132, 0.6)',
+                    'rgba(54, 162, 235, 0.6)',
+                    'rgba(255, 206, 86, 0.6)'
+                ],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 2,
+                showLine: true
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: nuevoTipo === 'pie' ? undefined : {
+                y: {
+                    beginAtZero: true,
+                    max: 3200
+                }
+            }
+        }
+    });
+});
+</script>
 
 </body>
 </html>

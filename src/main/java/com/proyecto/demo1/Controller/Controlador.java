@@ -58,6 +58,17 @@ public class Controlador {
         return "admin"; 
     }
 
+    @GetMapping("/admin")
+    public String mostrarGrafico2(Model model) {
+        List<String> etiquetas = Arrays.asList("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio");
+        List<Integer> valores = Arrays.asList(100, 350, 679, 438, 190, 632);
+
+        model.addAttribute("etiquetas2", etiquetas);
+        model.addAttribute("valores2", valores);
+
+        return "admin"; 
+    }
+
 }
 
     
