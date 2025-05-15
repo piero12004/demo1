@@ -1,5 +1,7 @@
 package com.proyecto.demo1.Controller;
 
+import java.util.Arrays;
+import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,5 +45,16 @@ public class Controlador {
             return "login";
         }
     }
+
+
+    @GetMapping("/admin")
+    public String mostrarGrafico(Model model) {
+    List<String> etiquetas = Arrays.asList("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio");
+    List<Integer> valores = Arrays.asList(100, 500, 1500, 2500, 1800, 3000);
+    model.addAttribute("etiquetas", etiquetas);
+    model.addAttribute("valores", valores);
+    return "admin";
+}
+
     
 }
