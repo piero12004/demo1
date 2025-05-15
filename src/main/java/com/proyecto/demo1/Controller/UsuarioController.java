@@ -42,7 +42,7 @@ public class UsuarioController {
     }
 
     //hace una busqueda por id y lo muestra en una tabla sin dejar de moestrar la tabla inicial
-    @PostMapping("/buscarEmpleado")
+    @PostMapping("/buscarUsuario")
     public String buscarPorId(@RequestParam int id, Model model){
         Usuario usua = usuarioService.obtenerUsuarioPorId(id);
         model.addAttribute("usuarios", usuarioService.obteneUsuarios());

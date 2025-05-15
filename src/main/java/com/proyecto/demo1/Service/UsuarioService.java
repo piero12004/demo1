@@ -23,8 +23,8 @@ public class UsuarioService {
         .orElse(null);
     }
 
-    public void eliminarUsuario(int codigo){
-        Usuario usua = obtenerUsuarioPorId(codigo);
+    public void eliminarUsuario(int id){
+        Usuario usua = obtenerUsuarioPorId(id);
         if(usua != null){
             usuarios.remove(usua);
         }
