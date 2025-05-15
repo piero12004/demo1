@@ -45,24 +45,74 @@
       </div>
     </nav>
 
+
+
     <div class="container mt-5">
-        <h2 class="text-center text-primary mb-4">Usuarios Registrados</h2>
-        <table class="table table-bordered table-striped shadow-sm">
-            <thead class="table-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>Usuario</th>
-                    <th>Contraseña</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="u : ${usuarios}">
-                    <td th:text="${u.id}"></td>
-                    <td th:text="${u.usuario}"></td>
-                    <td th:text="${u.contrasenia}"></td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="row">
+        <!-- Tabla de usuarios: 5 columnas -->
+        <div class="col-md-5">
+            <h4 class="text-primary mb-4 text-center">Usuarios Registrados</h4>
+            <table class="table table-bordered table-striped shadow-sm">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Usuario</th>
+                        <th>Contraseña</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="u : ${usuarios}">
+                        <td th:text="${u.id}"></td>
+                        <td th:text="${u.usuario}"></td>
+                        <td th:text="${u.contrasenia}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Sección de búsqueda y resultado -->
+        <div class="col-md-7">
+            <h4 class="text-center mb-4 text-success">Buscar Usuario por ID</h4>
+
+            <!-- Formulario de búsqueda -->
+            <form action="/buscarEmpleado" method="post" class="d-flex mb-3">
+                <input type="number" name="id" class="form-control me-2" placeholder="Ingrese ID del usuario" required>
+                <button type="submit" class="btn btn-primary">Buscar</button>
+            </form>
+
+            <!-- Mostrar resultados en una tabla aparte -->
+            <div th:if="${resultadoUsuario != null}">
+                <h5 class="text-center text-info">Resultado de la búsqueda</h5>
+                <table class="table table-bordered table-hover">
+                    <thead class="table-secondary">
+                        <tr>
+                            <th>ID</th>
+                            <th>Usuario</th>
+                            <th>Contraseña</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td th:text="${resultadoUsuario.id}"></td>
+                            <td th:text="${resultadoUsuario.usuario}"></td>
+                            <td th:text="${resultadoUsuario.contrasenia}"></td>
+                            <td>
+                                <a th:href="@{/eliminar/{id}(id=${resultadoUsuario.id})}" class="btn btn-danger btn-sm">Eliminar</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Si no se encuentra ningún usuario -->
+            <div th:if="${resultadoUsuario == null}" class="alert alert-danger mt-3">
+                No se encontró ningún usuario con ese ID.
+            </div>
+        </div>
     </div>
+</div>
+
+
 </body>
 </html>

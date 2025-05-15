@@ -7,9 +7,11 @@ public class Usuario {
     private String contrasenia;
 
     public Usuario(String usuario, String contrasenia) {
-        this.id = contador++;
         this.usuario = usuario;
         this.contrasenia = contrasenia;
+    }
+    public void asignarId(){
+        this.id=contador++;
     }
     public int getId() {
         return id;

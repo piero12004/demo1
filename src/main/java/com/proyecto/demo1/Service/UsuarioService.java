@@ -9,6 +9,7 @@ public class UsuarioService {
     private List<Usuario> usuarios = new ArrayList<>();
 
     public void agregarUsuario(Usuario usuario){
+        usuario.asignarId();
         usuarios.add(usuario);
     }
 
@@ -17,6 +18,13 @@ public class UsuarioService {
     }
 
     public Usuario obtenerUsuarioPorId(int id){
-        return usuarios.stream().filter(p -> p.getId() == id).findFirst().orElse(null);
+        return usuarios.stream().filter(u -> u.getId() == id).findFirst().orElse(null);
+    }
+
+    public void eliminarUsuario(int codigo){
+        Usuario usua = obtenerUsuarioPorId(codigo);
+        if(usua != null){
+            usuarios.remove(usua);
+        }
     }
 }
