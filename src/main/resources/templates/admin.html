@@ -72,8 +72,8 @@
     <h2 class="text-center mb-4">Usuarios registrados por mes</h2>
 
     <div class="mb-3 text-end">
-        <label for="tipoGrafico" class="form-label">Tipo de gráfico:</label>
-        <select id="tipoGrafico" class="form-select w-auto d-inline">
+        <label for="tipoGrafico2" class="form-label">Tipo de gráfico:</label>
+        <select id="tipoGrafico2" class="form-select w-auto d-inline">
             <option value="bar" selected>Barras</option>
             <option value="line">Línea</option>
             <option value="pie">Pastel</option>
@@ -199,7 +199,7 @@ let chart2 = new Chart(ctx2, {
     data: {
         labels: etiquetas2,
         datasets: [{
-            label: 'Ventas (100 - 3000)',
+            label: 'Ventas (100 - 1000)',
             data: valores2,
             fill: false,
             tension: 0.4,
@@ -228,15 +228,15 @@ let chart2 = new Chart(ctx2, {
     }
 });
 
-document.getElementById('tipoGrafico').addEventListener('change', function () {
+document.getElementById('tipoGrafico2').addEventListener('change', function () {
     const nuevoTipo = this.value;
-    chart.destroy();
-    chart = new Chart(ctx2, {
+    chart2.destroy();
+    chart2 = new Chart(ctx2, {
         type: nuevoTipo,
         data: {
             labels: etiquetas2,
             datasets: [{
-                label: 'Ventas (100 - 3000)',
+                label: 'registros (100 - 1000)',
                 data: valores2,
                 fill: false,    
                 tension: 0.4,
@@ -259,7 +259,7 @@ document.getElementById('tipoGrafico').addEventListener('change', function () {
             scales: nuevoTipo === 'pie' ? undefined : {
                 y: {
                     beginAtZero: true,
-                    max: 3200
+                    max: 3000 
                 }
             }
         }

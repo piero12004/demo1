@@ -51,20 +51,13 @@ public class Controlador {
     public String mostrarGrafico(Model model) {
         List<String> etiquetas = Arrays.asList("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio");
         List<Integer> valores = Arrays.asList(100, 500, 1500, 2500, 1800, 3000);
+        List<String> etiquetas2 = Arrays.asList("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio");
+        List<Integer> valores2 = Arrays.asList(100, 1350, 2679, 1438, 3190, 3632);
 
         model.addAttribute("etiquetas", etiquetas);
         model.addAttribute("valores", valores);
-
-        return "admin"; 
-    }
-
-    @GetMapping("/admin")
-    public String mostrarGrafico2(Model model) {
-        List<String> etiquetas = Arrays.asList("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio");
-        List<Integer> valores = Arrays.asList(100, 350, 679, 438, 190, 632);
-
-        model.addAttribute("etiquetas2", etiquetas);
-        model.addAttribute("valores2", valores);
+        model.addAttribute("etiquetas2", etiquetas2);
+        model.addAttribute("valores2", valores2);
 
         return "admin"; 
     }
