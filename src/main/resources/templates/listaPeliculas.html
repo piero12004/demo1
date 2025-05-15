@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+    <title>Usuarios Registrados</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+    
+        <div class="d-flex flex-column align-items-center me-4">
+          <img src="/imagenes/CINE_HH.jpg" alt="logo" style="width: 60px; height: auto;">
+          <a class="navbar-brand mt-1" href="#">CINEHH</a>
+        </div>
+    
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/AgregarPelicula}">Agregar Películas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/listaUsuarios}">Administrar Usuarios</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/listaPeliculas}">Administrar peliculas</a>
+            </li>
+            <!-- INICIO DE SESION-->
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/login}">cerrar sesión</a>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+            <button class="btn btn-outline-light" type="submit">Buscar</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+          <div class="container mt-5">
+    <div class="row">
+        <!-- Tabla de peliculas: 5 columnas -->
+        <div class="col-md-5">
+            <h4 class="text-primary mb-4 text-center">Lista peliculas</h4>
+            <table class="table table-bordered table-striped shadow-sm">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>nombre</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each=" p : ${peliculas}">
+                        <td th:text="${p.peli_id}"></td>
+                        <td th:text="${p.nombreP}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Sección de búsqueda y resultado -->
+        <div class="col-md-7">
+            <h4 class="text-center mb-4 text-success">Buscar Pelicula por ID</h4>
+
+            <!-- Formulario de búsqueda -->
+            <form th:action="@{/buscarPeli}" method="post" class="d-flex mb-3">
+                <input type="number" name="id" class="form-control me-2" placeholder="Ingrese ID de la Pelicula" required>
+                <button type="submit" class="btn btn-primary">Buscar</button>
+            </form>
+
+            <!-- Mostrar resultados en una tabla aparte -->
+            <div th:if="${resultado != null}">
+                <h5 class="text-center text-info">Resultado de la búsqueda</h5>
+                <table class="table table-bordered table-hover">
+                    <thead class="table-secondary">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td th:text="${resultado.peli_id}"></td>
+                            <td th:text="${resultado.nombreP}"></td>
+                            <td>
+                                <a th:href="@{/borrar/{id}(id=${resultado.peli_id})}" class="btn btn-danger btn-sm">Eliminar</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Si no se encuentra ningún usuario -->
+            <div th:if="${resultado == null}" class="alert alert-danger mt-3">
+                No se encontró ningún usuario con ese ID.
+            </div>
+        </div>
+</body>
+</html>

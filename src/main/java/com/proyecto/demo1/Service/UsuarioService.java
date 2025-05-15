@@ -18,7 +18,9 @@ public class UsuarioService {
     }
 
     public Usuario obtenerUsuarioPorId(int id){
-        return usuarios.stream().filter(u -> u.getId() == id).findFirst().orElse(null);
+        return usuarios.stream().filter(u -> u.getId() == id)
+        .findFirst()
+        .orElse(null);
     }
 
     public void eliminarUsuario(int codigo){

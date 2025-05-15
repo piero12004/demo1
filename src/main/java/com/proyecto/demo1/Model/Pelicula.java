@@ -1,12 +1,17 @@
 package com.proyecto.demo1.Model;
 
 public class Pelicula {
+    public static int contador = 100;
     private String nombreP;
     private String Img;
+    private int peli_id;
 
+    public int getPeli_id() {
+        return peli_id;
+    }
 
-    public Pelicula(){
-
+    public void asignarid_peli(){
+        this.peli_id = contador++;
     }
     
     public Pelicula(String nombreP, String Img){
