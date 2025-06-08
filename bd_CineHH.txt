@@ -1,0 +1,55 @@
+DROP DATABASE IF EXISTS CineHH;
+CREATE DATABASE CineHH;
+USE CineHH;
+
+DROP TABLE IF EXISTS Peliculas;
+CREATE TABLE IF NOT EXISTS Peliculas (
+peli_cod char(5) NOT NULL DEFAULT '',
+PRIMARY KEY (peli_cod),
+peli_nom varchar(30),
+precio decimal(5,2),
+imagen_url varchar(60)
+);
+
+INSERT INTO Peliculas (peli_cod, peli_nom, precio, imagen_url) VALUES ("P0001","Avengers","21.20","Avengers.jpg");
+INSERT INTO Peliculas (peli_cod, peli_nom, precio, imagen_url) VALUES ("P0002","Batman","18.20","Batman.jpg");
+INSERT INTO Peliculas (peli_cod, peli_nom, precio, imagen_url) VALUES ("P0003","Flow","18.90","Flow.jpg");
+INSERT INTO Peliculas (peli_cod, peli_nom, precio, imagen_url) VALUES ("P0004","Spiderman","20.00","Spiderman.jpg");
+
+
+DROP TABLE IF EXISTS Usuarios;
+CREATE TABLE IF NOT EXISTS Usuarios(
+	ucod char(5) NOT NULL DEFAULT '',
+    PRIMARY KEY (ucod),
+    nombre varchar(20),
+    apellido varchar(30),
+    telefono integer,
+    usuario varchar(50),
+    contrasenia varchar(30)
+) ;
+
+INSERT INTO Usuarios (ucod, nombre, apellido, telefono, usuario, contrasenia) VALUES ("U0001","Carlos","Gonzales","987654321","carloxG","carlos123");
+INSERT INTO Usuarios (ucod, nombre, apellido, telefono, usuario, contrasenia) VALUES ("U0002","Maria","Perez","963828263","Maperez","maria123");
+INSERT INTO Usuarios (ucod, nombre, apellido, telefono, usuario, contrasenia) VALUES ("U0003","Jose","Reyes","937651301","JoseeR","jose123");
+
+DROP TABLE IF EXISTS Admins;
+CREATE TABLE IF NOT EXISTS Admins(
+	admin_cod char(5),
+    PRIMARY KEY (admin_cod),
+    admin_user varchar(30),
+    clave varchar(30)
+);
+INSERT INTO Admins (admin_cod, admin_user, clave) VALUES ("A0001","AdminPOG","12004");
+
+DROP TABLE IF EXISTS Facturas;
+CREATE TABLE IF NOT EXISTS Facturas(
+	fac_cod char(5),
+    PRIMARY KEY (fac_cod),
+    ucod char(5),
+    FOREIGN KEY (ucod) REFERENCES Usuarios(ucod),
+    fecha date
+); 
+
+INSERT INTO Facturas (fac_cod, ucod, fecha) VALUES ("F0001","U0002","2024-10-09");
+INSERT INTO Facturas (fac_cod, ucod, fecha) VALUES ("F0003","U0001","2025-10-01");
+INSERT INTO Facturas (fac_cod, ucod, fecha) VALUES ("F0002","U0003","2024-12-09");
