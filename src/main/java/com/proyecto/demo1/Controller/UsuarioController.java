@@ -1,5 +1,8 @@
 package com.proyecto.demo1.Controller;
 
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,20 +12,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.proyecto.demo1.Model.Usuario;
+import com.proyecto.demo1.Repository.UsuarioRepository;
 import com.proyecto.demo1.Service.UsuarioService;
 
 @Controller
 public class UsuarioController {
-    private final UsuarioService usuarioService;
 
-    public UsuarioController(UsuarioService usuarioService) {
-        this.usuarioService = usuarioService;
-    }
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private UsuarioService usuarioService;
+
 
     // Página de formulario para registrar usuario
     @GetMapping("/registro")
     public String mostrarFormularioRegistro(Model model) {
-        model.addAttribute("usuario", new Usuario("", ""));
+        model.addAttribute("usuario", new Usuario());
         return "registroUsuario"; 
     }
 
@@ -30,31 +36,31 @@ public class UsuarioController {
     // Guardar usuario (localmente) y redirigir al listado
     @PostMapping("/guardarUsuario")
     public String guardarUsuario(@ModelAttribute Usuario usuario) {
-        usuarioService.agregarUsuario(usuario);
+        usuarioService.guardarUsuario(usuario);
         return "redirect:/PRINCIPAL"; 
     }
 
     // Mostrar lista de usuarios registrados
     @GetMapping("/listaUsuarios")
     public String mostrarListaUsuarios(Model model) {
-    model.addAttribute("usuarios", usuarioService.obteneUsuarios());
+    model.addAttribute("usuarios", usuarioRepository.findAll());
     return "listaUsuarios"; 
     }
 
     //hace una busqueda por id y lo muestra en una tabla sin dejar de moestrar la tabla inicial
     @PostMapping("/buscarUsuario")
-    public String buscarPorId(@RequestParam int id, Model model){
-        Usuario usua = usuarioService.obtenerUsuarioPorId(id);
-        model.addAttribute("usuarios", usuarioService.obteneUsuarios());
-        model.addAttribute("resultadoUsuario", usua);
+    public String buscarPorId(@RequestParam String id, Model model){
+        Optional <Usuario> usua = usuarioRepository.findById(id);
+        model.addAttribute("usuarios", usuarioRepository.findAll());
+        model.addAttribute("resultadoUsuario", usua.orElse(null));
         return "listaUsuarios";
     }
 
 
-    //elimina usuario por id
+    //elimina usuario por id/ no funciona porque esta relacionado con facturas
     @GetMapping("/eliminar/{id}")
-    public String eliminarUsuario(@PathVariable int id){
-        usuarioService.eliminarUsuario(id);
+    public String eliminarUsuario(@PathVariable String id){
+        usuarioRepository.deleteById(id);;
         return "redirect:/listaUsuarios";
     }
 

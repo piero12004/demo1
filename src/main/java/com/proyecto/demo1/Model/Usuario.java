@@ -1,30 +1,76 @@
 package com.proyecto.demo1.Model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "Usuarios")
 public class Usuario {
-    public static int contador=100;
-    private int id;
+    @Id
+    @Column(name = "ucod")
+    private String id;
+
+    @Column(name = "nombre")
+    private String nombre;
+
+    @Column(name = "apellido")
+    private String apellido;
+
+    @Column(name = "telefono")
+    private Integer telefono;
+
+    @Column(name = "usuario")
     private String usuario;
+
+    @Column(name = "contrasenia")
     private String contrasenia;
 
-    public Usuario(String usuario, String contrasenia) {
-        this.usuario = usuario;
-        this.contrasenia = contrasenia;
-    }
-    public void asignarId(){
-        this.id=contador++;
-    }
-    public int getId() {
+    public String getId() {
         return id;
     }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public Integer getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(Integer telefono) {
+        this.telefono = telefono;
+    }
+
     public String getUsuario() {
         return usuario;
     }
+
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
+
     public String getContrasenia() {
         return contrasenia;
     }
+
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
     }

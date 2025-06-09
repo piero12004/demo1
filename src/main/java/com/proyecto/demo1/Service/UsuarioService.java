@@ -1,32 +1,31 @@
 package com.proyecto.demo1.Service;
-import java.util.ArrayList;
-import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.proyecto.demo1.Model.Usuario;
+import com.proyecto.demo1.Repository.UsuarioRepository;
 
 @Service
 public class UsuarioService {
-    private List<Usuario> usuarios = new ArrayList<>();
 
-    public void agregarUsuario(Usuario usuario){
-        usuario.asignarId();
-        usuarios.add(usuario);
-    }
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
-    public List<Usuario> obteneUsuarios(){
-        return usuarios;
-    }
+    public void guardarUsuario(Usuario usuario) {
+        
+        if (usuario.getId() == null || usuario.getId().isEmpty()) {
+            String ultimoCodigo = usuarioRepository.findUltimoCodigo(); 
 
-    public Usuario obtenerUsuarioPorId(int id){
-        return usuarios.stream().filter(u -> u.getId() == id)
-        .findFirst()
-        .orElse(null);
-    }
+            int num = 1;
+            if (ultimoCodigo != null && ultimoCodigo.startsWith("U")) {
+                num = Integer.parseInt(ultimoCodigo.substring(1)) + 1;
+            }
 
-    public void eliminarUsuario(int id){
-        Usuario usua = obtenerUsuarioPorId(id);
-        if(usua != null){
-            usuarios.remove(usua);
+            String nuevoCodigo = "U" + String.format("%04d", num); 
+            usuario.setId(nuevoCodigo);
         }
+
+        usuarioRepository.save(usuario);
     }
 }
