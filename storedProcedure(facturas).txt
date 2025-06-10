@@ -1,0 +1,10 @@
+USE cinehh;
+DELIMITER $$
+DROP PROCEDURE IF EXISTS reporte_fac$$
+CREATE PROCEDURE reporte_fac(IN id_usuario char(5))
+BEGIN
+	SELECT u.ucod,nombre, apellido, fecha
+    FROM usuarios u INNER JOIN facturas f ON u.ucod = f.ucod
+    WHERE u.ucod = id_usuario;
+END$$
+DELIMITER ;
