@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 public class Usuario {
     @Id
     @Column(name = "ucod")
-    private String id;
+    private String ucod;
 
     @Column(name = "nombre")
     private String nombre;
@@ -26,14 +26,6 @@ public class Usuario {
 
     @Column(name = "contrasenia")
     private String contrasenia;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getNombre() {
         return nombre;
@@ -73,6 +65,14 @@ public class Usuario {
 
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
+    }
+
+    public String getUcod() {
+        return ucod;
+    }
+
+    public void setUcod(String ucod) {
+        this.ucod = ucod;
     }
 
     

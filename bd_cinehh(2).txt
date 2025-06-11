@@ -49,6 +49,15 @@ CREATE TABLE IF NOT EXISTS Facturas(
     fecha date
 ); 
 
-INSERT INTO Facturas (fac_cod, ucod, fecha) VALUES ("F0001","U0002","2024-10-09");
-INSERT INTO Facturas (fac_cod, ucod, fecha) VALUES ("F0003","U0001","2025-10-01");
-INSERT INTO Facturas (fac_cod, ucod, fecha) VALUES ("F0002","U0003","2024-12-09");
+INSERT INTO Facturas (fac_cod, ucod, fecha) VALUES 
+('F0001', 'U0001', '2023-06-01'),
+('F0002', 'U0001', '2025-12-02'),
+('F0003', 'U0002', '2024-06-01'),
+('F0004', 'U0002', '2024-03-03'),
+('F0005', 'U0003', '2020-06-01'),
+('F0006', 'U0003', '2021-08-04'),
+('F0007', 'U0001', '2025-06-05'),
+('F0008', 'U0001', '2024-01-07'),
+('F0009', 'U0002', '2025-06-06'),
+('F0010', 'U0003', '2023-04-20'),
+('F0011', 'U0003', '2024-02-08');
