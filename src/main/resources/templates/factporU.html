@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Facturas del Usuario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h3 class="text-primary mb-4">Facturas del Usuario</h3>
+
+    <div th:if="${#lists.isEmpty(facturasUsuario)}">
+        <div class="alert alert-warning">Este usuario no tiene facturas registradas.</div>
+    </div>
+
+    <div th:if="${!#lists.isEmpty(facturasUsuario)}">
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Código de Factura</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="fac : ${facturasUsuario}">
+                    <td th:text="${fac.facCod}"></td>
+                    <td th:text="${fac.fecha}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <a href="/listaUsuarios" class="btn btn-secondary mt-3">Volver a Usuarios</a>
+</div>
+</body>
+</html>

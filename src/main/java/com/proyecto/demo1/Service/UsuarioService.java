@@ -13,8 +13,7 @@ public class UsuarioService {
     private UsuarioRepository usuarioRepository;
 
     public void guardarUsuario(Usuario usuario) {
-        
-        if (usuario.getId() == null || usuario.getId().isEmpty()) {
+        if (usuario.getUcod() == null || usuario.getUcod().isEmpty()) {
             String ultimoCodigo = usuarioRepository.findUltimoCodigo(); 
 
             int num = 1;
@@ -23,7 +22,7 @@ public class UsuarioService {
             }
 
             String nuevoCodigo = "U" + String.format("%04d", num); 
-            usuario.setId(nuevoCodigo);
+            usuario.setUcod(nuevoCodigo);
         }
 
         usuarioRepository.save(usuario);
