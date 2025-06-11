@@ -75,9 +75,9 @@
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" id="cards-Container">
         <div th:each="p:${peliculas}"class="col">
           <div class="card h-100">
-            <img th:src="${p.Img}" class="card-img-top" alt="imagen de pelicula">
+            <img th:src="${p.portada}" class="card-img-top" alt="imagen de pelicula">
             <div class="card-body">
-              <h5 class="card-title" th:text="${p.nombreP}"></h5>
+              <h5 class="card-title" th:text="${p.titulo}"></h5>
               <p class="card-text text-truncate"></p>
               <a href="#" class="btn btn-primary">Comprar</a>
             </div>

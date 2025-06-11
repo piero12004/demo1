@@ -1,38 +1,45 @@
 package com.proyecto.demo1.Model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "peliculas")
 public class Pelicula {
-    public static int contador = 100;
-    private String nombreP;
-    private String Img;
-    private int peli_id;
+    @Id
+    @Column(name = "peli_cod")
+    private String id;
 
-    public int getPeli_id() {
-        return peli_id;
+    @Column(name = "peli_nom")
+    private String titulo;
+
+    @Column(name = "imagen_url")
+    private String portada;
+
+    public String getId() {
+        return id;
     }
 
-    public void asignarid_peli(){
-        this.peli_id = contador++;
-    }
-    
-    public Pelicula(String nombreP, String Img){
-        this.nombreP = nombreP;
-        this.Img = Img;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getNombreP() {
-        return nombreP;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setNombreP(String nombreP) {
-        this.nombreP = nombreP;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
-    public String getImg() {
-        return Img;
+    public String getPortada() {
+        return portada;
     }
 
-    public void setImg(String img) {
-        Img = img;
+    public void setPortada(String portada) {
+        this.portada = portada;
     }
 
     

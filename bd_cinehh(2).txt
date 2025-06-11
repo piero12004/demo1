@@ -7,14 +7,13 @@ CREATE TABLE IF NOT EXISTS Peliculas (
 peli_cod char(5) NOT NULL DEFAULT '',
 PRIMARY KEY (peli_cod),
 peli_nom varchar(30),
-precio decimal(5,2),
 imagen_url varchar(60)
 );
 
-INSERT INTO Peliculas (peli_cod, peli_nom, precio, imagen_url) VALUES ("P0001","Avengers","21.20","Avengers.jpg");
-INSERT INTO Peliculas (peli_cod, peli_nom, precio, imagen_url) VALUES ("P0002","Batman","18.20","Batman.jpg");
-INSERT INTO Peliculas (peli_cod, peli_nom, precio, imagen_url) VALUES ("P0003","Flow","18.90","Flow.jpg");
-INSERT INTO Peliculas (peli_cod, peli_nom, precio, imagen_url) VALUES ("P0004","Spiderman","20.00","Spiderman.jpg");
+INSERT INTO Peliculas (peli_cod, peli_nom,imagen_url) VALUES ("P0001","Avengers","/imagenes/Avengers.jpg");
+INSERT INTO Peliculas (peli_cod, peli_nom,imagen_url) VALUES ("P0002","Batman","/imagenes/Batman.jpg");
+INSERT INTO Peliculas (peli_cod, peli_nom,imagen_url) VALUES ("P0003","Flow","/imagenes/Flow.jpg");
+INSERT INTO Peliculas (peli_cod, peli_nom,imagen_url) VALUES ("P0004","Spiderman","/imagenes/Spiderman.jpg");
 
 
 DROP TABLE IF EXISTS Usuarios;

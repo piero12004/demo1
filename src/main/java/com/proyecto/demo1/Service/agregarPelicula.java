@@ -3,32 +3,35 @@ package com.proyecto.demo1.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.proyecto.demo1.Model.Pelicula;
+import com.proyecto.demo1.Model.peliculaResumenDTO;
+import com.proyecto.demo1.Repository.PeliculaRepository;
 @Service
 public class agregarPelicula {
-    private List <Pelicula> peliculas = new ArrayList<>();
+
+    @Autowired
+    private PeliculaRepository peliculaRepository;
 
     public void añadirPelicula(Pelicula pelicula){
-        pelicula.asignarid_peli();
-        peliculas.add(pelicula);
-    }
+        if (pelicula.getId() == null || pelicula.getId().isEmpty()) {
+            String ultimoCodigo = peliculaRepository.UltimoCodigo(); 
 
-    public List<Pelicula> getPeliculas(){
-        return this.peliculas;
-    }
+            int num = 1;
+            if (ultimoCodigo != null && ultimoCodigo.startsWith("P")) {
+                num = Integer.parseInt(ultimoCodigo.substring(1)) + 1;
+            }
 
-    public Pelicula obtenerPelixID(int id){
-        return peliculas.stream().filter(p -> p.getPeli_id() == id)
-        .findFirst()
-        .orElse(null);
-    }
-
-    public void eliminarPeli(int id){
-        Pelicula peli = obtenerPelixID(id);
-        if(peli != null){
-            peliculas.remove(peli);
+            String nuevoCodigo = "P" + String.format("%04d", num); 
+            pelicula.setId(nuevoCodigo);
         }
+
+        peliculaRepository.save(pelicula);
+    }
+
+    public List<peliculaResumenDTO> getPeliculas(){
+        return peliculaRepository.obtenerPeliculas();
     }
 }

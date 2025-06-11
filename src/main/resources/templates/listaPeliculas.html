@@ -59,8 +59,8 @@
                 </thead>
                 <tbody>
                     <tr th:each=" p : ${peliculas}">
-                        <td th:text="${p.peli_id}"></td>
-                        <td th:text="${p.nombreP}"></td>
+                        <td th:text="${p.id}"></td>
+                        <td th:text="${p.titulo}"></td>
                     </tr>
                 </tbody>
             </table>
@@ -72,7 +72,7 @@
 
             <!-- Formulario de búsqueda -->
             <form th:action="@{/buscarPeli}" method="post" class="d-flex mb-3">
-                <input type="number" name="id" class="form-control me-2" placeholder="Ingrese ID de la Pelicula" required>
+                <input type="text" name="id" class="form-control me-2" placeholder="Ingrese ID de la Pelicula" required>
                 <button type="submit" class="btn btn-primary">Buscar</button>
             </form>
 
@@ -89,10 +89,10 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td th:text="${resultado.peli_id}"></td>
-                            <td th:text="${resultado.nombreP}"></td>
+                            <td th:text="${resultado.id}"></td>
+                            <td th:text="${resultado.titulo}"></td>
                             <td>
-                                <a th:href="@{/borrar/{id}(id=${resultado.peli_id})}" class="btn btn-danger btn-sm">Eliminar</a>
+                                <a th:href="@{/borrar/{id}(id=${resultado.id})}" class="btn btn-danger btn-sm">Eliminar</a>
                             </td>
                         </tr>
                     </tbody>
@@ -100,7 +100,7 @@
             </div>
 
             <!-- Si no se encuentra ningún usuario -->
-            <div th:if="${resultado == null}" class="alert alert-danger mt-3">
+            <div th:if="${peliculas == null}" class="alert alert-danger mt-3">
                 No se encontró ningún usuario con ese ID.
             </div>
         </div>
