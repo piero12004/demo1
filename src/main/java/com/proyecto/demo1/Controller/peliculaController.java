@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.proyecto.demo1.Model.Pelicula;
-import com.proyecto.demo1.Model.peliculaResumenDTO;
 import com.proyecto.demo1.Repository.PeliculaRepository;
 import com.proyecto.demo1.Service.agregarPelicula;
+import com.proyecto.demo1.dto.peliculaResumenDTO;
 
 @Controller
 public class peliculaController {

@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.proyecto.demo1.Model.Pelicula;
-import com.proyecto.demo1.Model.peliculaResumenDTO;
 import com.proyecto.demo1.Repository.PeliculaRepository;
+import com.proyecto.demo1.dto.peliculaResumenDTO;
 @Service
 public class agregarPelicula {
 

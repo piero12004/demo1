@@ -1,4 +1,4 @@
-package com.proyecto.demo1.Model;
+package com.proyecto.demo1.dto;
 
 public class peliculaResumenDTO {
     private String portada;
