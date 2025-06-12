@@ -20,7 +20,6 @@ import com.proyecto.demo1.Model.Pelicula;
 import com.proyecto.demo1.Repository.PeliculaRepository;
 import com.proyecto.demo1.Service.agregarPelicula;
 
-
 @Controller
 public class peliculaController {
     @Autowired 
@@ -39,6 +38,12 @@ public class peliculaController {
         
         pelicula.setPortada("/imagenes/" + nombreArchivo);
         AgregarPelicula.añadirPelicula(pelicula);
+        model.addAttribute("peliculas", agregarPelicula2.getPeliculas());
+        return "cartelera";
+    }
+
+    @GetMapping("/mostrarPeliculas")
+    public String mostrarPeliculasCards(Model model){
         model.addAttribute("peliculas", agregarPelicula2.getPeliculas());
         return "cartelera";
     }
