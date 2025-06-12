@@ -10,41 +10,61 @@
   <html xmlns:th="http://www.thymeleaf.org"></html>
 </head>
 <body>
-
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-      <div class="d-flex flex-column align-items-center me-4">
-        <img src="/imagenes/CINE_HH.jpg" alt="logo" style="width: 60px; height: auto;">
-        <a class="navbar-brand mt-1" th:href="@{/PRINCIPAL}">CINEHH</a>
-      </div>
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" th:href="@{/PRINCIPAL}">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" th:href="@{/cartelera}">Cartelera</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" th:href="@{/Estrenos}">Estrenos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" th:href="@{/Contacto}">Contacto</a>
-          </li>
-        </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-          <button class="btn btn-outline-light" type="submit">Buscar</button>
-        </form>
-      </div>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <div class="d-flex flex-column align-items-center me-4">
+      <img src="/imagenes/CINE_HH.jpg" alt="logo" style="width: 60px; height: auto;">
+      <a class="navbar-brand mt-1" th:href="@{/PRINCIPAL}">CINEHH</a>
     </div>
-  </nav>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/PRINCIPAL}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/cartelera}">Cartelera</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/Estrenos}">Estrenos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/Contacto}">Contacto</a>
+        </li>
+      </ul>
+
+      <!-- Si el usuario está logueado -->
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item dropdown" th:if="${usuarioLogueado != null}">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <span th:text="${usuarioLogueado}">Usuario</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="userDropdown">
+            <li><a class="dropdown-item" th:href="@{/logout}">Cerrar Sesión</a></li>
+          </ul>
+        </li>
+
+        <!-- Si no está logueado -->
+        <li class="nav-item dropdown" th:if="${usuarioLogueado == null}">
+          <a class="nav-link dropdown-toggle" href="#" id="usuarioDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Usuario
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="usuarioDropdown">
+            <li><a class="dropdown-item" th:href="@{/login}">Iniciar Sesión</a></li>
+            <li><a class="dropdown-item" th:href="@{/registro}">Registrarse</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<br>
 
   <div class="text-center mb-3">
     <h1 class="display-5">Cartelera </h1>

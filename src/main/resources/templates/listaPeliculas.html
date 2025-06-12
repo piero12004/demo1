@@ -8,42 +8,44 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container-fluid">
-    
-        <div class="d-flex flex-column align-items-center me-4">
-          <img src="/imagenes/CINE_HH.jpg" alt="logo" style="width: 60px; height: auto;">
-          <a class="navbar-brand mt-1" href="#">CINEHH</a>
-        </div>
-    
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-    
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" th:href="@{/AgregarPelicula}">Agregar Películas</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" th:href="@{/listaUsuarios}">Administrar Usuarios</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" th:href="@{/listaPeliculas}">Administrar peliculas</a>
-            </li>
-            <!-- INICIO DE SESION-->
-            <li class="nav-item">
-              <a class="nav-link" th:href="@{/login}">cerrar sesión</a>
-            </li>
-          </ul>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-            <button class="btn btn-outline-light" type="submit">Buscar</button>
-          </form>
-        </div>
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <div class="d-flex flex-column align-items-center me-4">
+      <img src="/imagenes/CINE_HH.jpg" alt="logo" style="width: 60px; height: auto;">
+      <a class="navbar-brand mt-1" th:href="@{/admin}">CINEHH</a>
+    </div>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/AgregarPelicula}">Agregar películas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/listaUsuarios}">Administrar Usuarios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/listaPeliculas}">Administrar películas</a>
+        </li>
+      </ul>
+
+      <!-- Mostrar solo si hay un admin logueado -->
+      <div th:if="${adminLogueado != null}" class="d-flex align-items-center">
+        <span class="text-light me-3" th:text="'Administrador: ' + ${adminLogueado}"></span>
+        <a class="btn btn-outline-light" th:href="@{/logout}">Cerrar sesión</a>
       </div>
-    </nav>
+
+      <!-- No mostrar nada si no hay admin logueado -->
+      <div th:unless="${adminLogueado != null}">
+        <a class="btn btn-outline-light" th:href="@{/login}">Iniciar sesión</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
 
           <div class="container mt-5">
     <div class="row">

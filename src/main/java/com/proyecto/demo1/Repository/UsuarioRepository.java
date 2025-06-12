@@ -8,6 +8,7 @@ import com.proyecto.demo1.Model.Usuario;
 public interface UsuarioRepository extends JpaRepository<Usuario, String>{
 @Query(value = "SELECT ucod FROM usuarios ORDER BY ucod DESC LIMIT 1", nativeQuery = true)
 String findUltimoCodigo();
+Usuario findByUsuarioAndContrasenia(String usuario, String contrasenia);
 
 
 }

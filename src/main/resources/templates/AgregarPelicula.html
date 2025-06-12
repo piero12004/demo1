@@ -16,7 +16,7 @@
   <div class="container-fluid">
     <div class="d-flex flex-column align-items-center me-4">
       <img src="/imagenes/CINE_HH.jpg" alt="logo" style="width: 60px; height: auto;">
-      <a class="navbar-brand mt-1" href="#">CINEHH</a>
+      <a class="navbar-brand mt-1" th:href="@{/admin}">CINEHH</a>
     </div>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
@@ -26,25 +26,30 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" th:href="@{/AgregarPelicula}">Agregar Películas</a>
+          <a class="nav-link" th:href="@{/AgregarPelicula}">Agregar películas</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" th:href="@{/listaUsuarios}">Administrar Usuarios</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link">Contacto</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" th:href="@{/login}">Cerrar Sesión</a>
+          <a class="nav-link" th:href="@{/listaPeliculas}">Administrar películas</a>
         </li>
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Buscar">
-        <button class="btn btn-outline-light" type="submit">Buscar</button>
-      </form>
+
+      <!-- Mostrar solo si hay un admin logueado -->
+      <div th:if="${adminLogueado != null}" class="d-flex align-items-center">
+        <span class="text-light me-3" th:text="'Administrador: ' + ${adminLogueado}"></span>
+        <a class="btn btn-outline-light" th:href="@{/logout}">Cerrar sesión</a>
+      </div>
+
+      <!-- No mostrar nada si no hay admin logueado -->
+      <div th:unless="${adminLogueado != null}">
+        <a class="btn btn-outline-light" th:href="@{/login}">Iniciar sesión</a>
+      </div>
     </div>
   </div>
 </nav>
+
 
 <!-- Contenido principal -->
 <div class="container py-5">

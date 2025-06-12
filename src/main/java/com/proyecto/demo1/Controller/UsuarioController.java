@@ -33,7 +33,7 @@ public class UsuarioController {
     }
 
 
-    // Guardar usuario (localmente) y redirigir al listado
+    // Guardar usuario y redirigir al listado
     @PostMapping("/guardarUsuario")
     public String guardarUsuario(@ModelAttribute Usuario usuario) {
         usuarioService.guardarUsuario(usuario);
@@ -47,7 +47,7 @@ public class UsuarioController {
     return "listaUsuarios"; 
     }
 
-    //hace una busqueda por id y lo muestra en una tabla sin dejar de moestrar la tabla inicial
+    //hace una busqueda por id y lo muestra en una tabla sin dejar de mostrar la tabla inicial
     @PostMapping("/buscarUsuario")
     public String buscarPorId(@RequestParam String id, Model model){
         Optional <Usuario> usua = usuarioRepository.findById(id);
