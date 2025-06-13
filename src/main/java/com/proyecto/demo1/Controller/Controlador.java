@@ -65,6 +65,11 @@ public String validarLogin(@RequestParam String usuario, @RequestParam String cl
     return "login";
 }
 
+@GetMapping("/")
+public String inicio() {
+    return "PRINCIPAL"; // o puedes redirigir a login o PRINCIPAL
+}
+
 
 
 

@@ -61,3 +61,26 @@ INSERT INTO Facturas (fac_cod, ucod, fecha) VALUES
 ('F0009', 'U0002', '2025-06-06'),
 ('F0010', 'U0003', '2023-04-20'),
 ('F0011', 'U0003', '2024-02-08');
+
+DROP TABLE IF EXISTS DetalleFactura;
+CREATE TABLE IF NOT EXISTS DetalleFactura (
+    cod_detalle CHAR(5) PRIMARY KEY,
+    fac_cod CHAR(5),
+    peli_cod CHAR(5),
+    asientos INT,
+    FOREIGN KEY (fac_cod) REFERENCES Facturas(fac_cod),
+    FOREIGN KEY (peli_cod) REFERENCES Peliculas(peli_cod)
+);
+
+INSERT INTO DetalleFactura (cod_detalle, fac_cod, peli_cod, asientos) VALUES 
+('D0001', 'F0001', 'P0001', 2),
+('D0002', 'F0002', 'P0002', 4),
+('D0003', 'F0003', 'P0003', 1),
+('D0004', 'F0004', 'P0001', 3),
+('D0005', 'F0005', 'P0004', 2),
+('D0006', 'F0006', 'P0002', 1),
+('D0007', 'F0007', 'P0003', 5),
+('D0008', 'F0008', 'P0001', 3),
+('D0009', 'F0009', 'P0004', 2),
+('D0010', 'F0010', 'P0002', 3),
+('D0011', 'F0011', 'P0003', 1);

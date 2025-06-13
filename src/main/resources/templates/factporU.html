@@ -19,12 +19,16 @@
                 <tr>
                     <th>Código de Factura</th>
                     <th>Fecha</th>
+                    <th>VerDetalle</th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="fac : ${facturasUsuario}">
                     <td th:text="${fac.facCod}"></td>
                     <td th:text="${fac.fecha}"></td>
+                    <td>
+                        <a th:href="@{/detalleFactura/{facCod}(facCod=${fac.facCod})}" class="btn btn-info btn-sm">Ver Detalle</a>
+                    </td>
                 </tr>
             </tbody>
         </table>
