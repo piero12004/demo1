@@ -27,6 +27,7 @@ public class Usuario {
     @Column(name = "contrasenia")
     private String contrasenia;
 
+    //getters - setters
     public String getNombre() {
         return nombre;
     }

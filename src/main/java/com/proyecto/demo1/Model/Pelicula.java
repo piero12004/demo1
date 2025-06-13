@@ -18,6 +18,8 @@ public class Pelicula {
     @Column(name = "imagen_url")
     private String portada;
 
+    //getters- setters
+
     public String getId() {
         return id;
     }

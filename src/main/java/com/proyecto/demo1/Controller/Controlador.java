@@ -71,14 +71,6 @@ public String validarLogin(@RequestParam String usuario, @RequestParam String cl
     return "login";
 }
 
-@GetMapping("/")
-public String inicio() {
-    return "PRINCIPAL"; // o puedes redirigir a login o PRINCIPAL
-}
-
-
-
-
     @GetMapping("/PRINCIPAL")
     public String vistaUsuario(HttpSession session, Model model) {
         String usuario = (String) session.getAttribute("usuarioLogueado");
