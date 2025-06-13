@@ -41,6 +41,12 @@ public class Controlador {
     public String pLogin() {
         return "login"; 
     }
+
+    //La primera pagina que aparecera al correr el proyecto
+    @GetMapping("/")
+    public String vistaInicial(){
+        return "PRINCIPAL";
+    }
     
     //VALIDAR USUARIO 
     @PostMapping("/validar")
