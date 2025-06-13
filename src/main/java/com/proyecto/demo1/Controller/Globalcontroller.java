@@ -12,6 +12,7 @@ public class Globalcontroller {
     @ModelAttribute
     public void agregarUsuarioLogueadoAlModelo(HttpSession session, Model model) {
         String usuario = (String) session.getAttribute("usuarioLogueado");
+        String codigo = (String) session.getAttribute("ucod");
         String admin = (String) session.getAttribute("adminLogueado");
 
         if (admin != null) {
@@ -20,6 +21,7 @@ public class Globalcontroller {
 
         if (usuario != null) {
             model.addAttribute("usuarioLogueado", usuario);
+            model.addAttribute("ucod", codigo);
         }
     }
 }

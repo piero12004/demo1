@@ -43,6 +43,7 @@
         <li class="nav-item dropdown" th:if="${usuarioLogueado != null}">
           <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <span th:text="${usuarioLogueado}">Usuario</span>
+            <span th:text="${ucod}">CODE</span>
           </a>
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="userDropdown">
             <li><a class="dropdown-item" th:href="@{/logout}">Cerrar Sesión</a></li>
@@ -99,12 +100,25 @@
             <div class="card-body">
               <h5 class="card-title" th:text="${p.titulo}"></h5>
               <p class="card-text text-truncate"></p>
-              <a href="#" class="btn btn-primary">Comprar</a>
+              <a th:href="@{/GenerarFactura(ucod=${session.ucod})}" class="btn btn-primary">Comprar</a>
             </div>
           </div>
         </div>
     </div>
     </div>
+    <!--Panel de confirmacion de Compra-->
+    <div th:if="${compraExitosa}" class="position-fixed bottom-0 end-0 p-3" style="z-index: 9999;">
+  <div class="toast show bg-success text-white" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header bg-success text-white">
+      <strong class="me-auto">Compra Exitosa</strong>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+      ¡Gracias por tu compra!
+    </div>
+  </div>
+</div>
+
   </script>
 
   <!-- Footer -->

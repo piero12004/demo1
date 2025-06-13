@@ -1,5 +1,6 @@
 package com.proyecto.demo1.Controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import com.proyecto.demo1.dto.FacturaDTO;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 
@@ -35,5 +38,12 @@ public class FacturaController {
         System.out.println("Facturas encontradas para " + ucod + ": " + facturas.size());
         model.addAttribute("facturasUsuario", facturas);
         return "factporU";
+    }
+
+    @GetMapping("/GenerarFactura")
+    public String crearFactura(@RequestParam("ucod") String ucod, RedirectAttributes redirectAttributes){
+        facturaService.crearFactura("",ucod,LocalDate.now());
+        redirectAttributes.addFlashAttribute("compraExitosa", true);
+        return "redirect:/mostrarPeliculas";
     }
 }

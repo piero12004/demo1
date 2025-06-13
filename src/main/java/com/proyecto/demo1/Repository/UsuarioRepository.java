@@ -10,5 +10,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, String>{
 String findUltimoCodigo();
 Usuario findByUsuarioAndContrasenia(String usuario, String contrasenia);
 
+Usuario findByUcod(String ucod);
 
 }

@@ -64,6 +64,7 @@ public String validarLogin(@RequestParam String usuario, @RequestParam String cl
     Usuario user = usuarioRepo.findByUsuarioAndContrasenia(usuario, clave);
     if (user != null) {
         session.setAttribute("usuarioLogueado", user.getUsuario());
+        session.setAttribute("ucod", user.getUcod());
         return "redirect:/PRINCIPAL";
     }
 

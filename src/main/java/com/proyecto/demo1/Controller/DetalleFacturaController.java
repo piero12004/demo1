@@ -27,7 +27,7 @@ public class DetalleFacturaController {
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("error", "No se pudo obtener el detalle de la factura.");
-            return "error"; // puedes tener una vista de error.html o manejarlo con un mensaje
+            return "error"; 
         }
     }
 }
