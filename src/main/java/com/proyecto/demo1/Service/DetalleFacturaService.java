@@ -10,10 +10,12 @@ public class DetalleFacturaService {
 
     private final DetalleFacturaRepository detalleFacturaRepository;
 
+    //constructor
     public DetalleFacturaService(DetalleFacturaRepository detalleFacturaRepository) {
         this.detalleFacturaRepository = detalleFacturaRepository;
     }
 
+    //llamado al metodo
     public DetalleFacturaDTO obtenerDetalle(String facCod) {
         return detalleFacturaRepository.obtenerDetalleFacturaPorCodigo(facCod);
     }

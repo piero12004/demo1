@@ -32,6 +32,7 @@ public class peliculaController {
         this.AgregarPelicula = AgregarPelicula;
     }
 
+    //obtener y guardar datos de la pelicula
     @PostMapping("/guardarPelicula")
     public String guardarPelicula(@ModelAttribute Pelicula pelicula, @RequestParam("urlP") MultipartFile urlP, Model model){
         String nombreArchivo = urlP.getOriginalFilename();

@@ -12,6 +12,7 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    //genera nuevo codigo(U000x)
     public void guardarUsuario(Usuario usuario) {
         if (usuario.getUcod() == null || usuario.getUcod().isEmpty()) {
             String ultimoCodigo = usuarioRepository.findUltimoCodigo(); 

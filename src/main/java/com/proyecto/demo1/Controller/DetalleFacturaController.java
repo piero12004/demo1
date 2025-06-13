@@ -18,12 +18,13 @@ public class DetalleFacturaController {
         this.detalleFacturaService = detalleFacturaService;
     }
 
+    //Muestra el detalle de una factura específica (DTO)
     @GetMapping("/{facCod}")
     public String mostrarDetalle(@PathVariable String facCod, Model model) {
         try {
             DetalleFacturaDTO detalle = detalleFacturaService.obtenerDetalle(facCod);
             model.addAttribute("detalle", detalle);
-            return "detalleFactura"; // archivo HTML en templates/detalleFactura.html
+            return "detalleFactura"; 
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("error", "No se pudo obtener el detalle de la factura.");

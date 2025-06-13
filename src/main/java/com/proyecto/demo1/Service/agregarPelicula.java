@@ -14,6 +14,7 @@ public class agregarPelicula {
     @Autowired
     private PeliculaRepository peliculaRepository;
 
+    //genera nuevo codigo(P000x)
     public void añadirPelicula(Pelicula pelicula){
         if (pelicula.getId() == null || pelicula.getId().isEmpty()) {
             String ultimoCodigo = peliculaRepository.UltimoCodigo(); 
@@ -30,6 +31,7 @@ public class agregarPelicula {
         peliculaRepository.save(pelicula);
     }
 
+    //llama al repositorio
     public List<peliculaResumenDTO> getPeliculas(){
         return peliculaRepository.obtenerPeliculas();
     }

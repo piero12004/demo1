@@ -15,10 +15,11 @@ import jakarta.persistence.PersistenceContext;
 public class DetalleFacturaRepository {
 
     @PersistenceContext
-    private EntityManager entityManager;
+    private EntityManager entityManager; //ejecutar consultas
 
     public DetalleFacturaDTO obtenerDetalleFacturaPorCodigo(String facCod) {
         try {
+            //llamado del procedimiento
             Object[] resultado = (Object[]) entityManager
                 .createNativeQuery("CALL detalle_factura_por_codigo(:facCod)")
                 .setParameter("facCod", facCod)
@@ -26,6 +27,7 @@ public class DetalleFacturaRepository {
 
             if (resultado == null) return null;
 
+            //asignar valores desde el procedimiento al DTO
             DetalleFacturaDTO dto = new DetalleFacturaDTO();
             dto.setCodFactura((String) resultado[0]);
             dto.setNombreCliente((String) resultado[1]);

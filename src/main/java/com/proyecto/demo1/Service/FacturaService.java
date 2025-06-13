@@ -30,6 +30,7 @@ public class FacturaService {
     GenerarFacturaDTO dto = new GenerarFacturaDTO(fac_cod, usuario, fecha);
     Factura Nfactura = dto.getFactura();
 
+    //generar nuevo codigo (F00x)
     if (Nfactura.getFacCod() == null || Nfactura.getFacCod().isEmpty()) {
         String ultimoCodigo = facturaRepository.UltimoCodigo();
         int num = 1;

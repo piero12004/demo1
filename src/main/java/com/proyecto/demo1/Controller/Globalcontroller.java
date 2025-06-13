@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpSession;
 @ControllerAdvice
 public class Globalcontroller {
 
+    //html acceden al nombre de administrador o usuario
     @ModelAttribute
     public void agregarUsuarioLogueadoAlModelo(HttpSession session, Model model) {
         String usuario = (String) session.getAttribute("usuarioLogueado");

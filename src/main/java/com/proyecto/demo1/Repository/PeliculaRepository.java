@@ -13,6 +13,7 @@ public interface PeliculaRepository extends JpaRepository<Pelicula, String> {
 @Query(value = "SELECT peli_cod FROM peliculas ORDER BY peli_cod DESC LIMIT 1", nativeQuery = true)
 String UltimoCodigo();
 
+//obtener datos (portada y titulo)
 @Query(value = "SELECT new com.proyecto.demo1.dto.peliculaResumenDTO(p.portada, p.titulo) FROM Pelicula p")
 List<peliculaResumenDTO> obtenerPeliculas();
 
