@@ -1,0 +1,87 @@
+DROP DATABASE IF EXISTS CineHH;
+CREATE DATABASE CineHH;
+USE CineHH;
+
+DROP TABLE IF EXISTS Peliculas;
+CREATE TABLE IF NOT EXISTS Peliculas (
+peli_cod char(5) NOT NULL DEFAULT '',
+PRIMARY KEY (peli_cod),
+peli_nom varchar(30),
+imagen_url varchar(60)
+);
+
+INSERT INTO Peliculas (peli_cod, peli_nom,imagen_url) VALUES ("P0001","Avengers","/imagenes/Avengers.jpg");
+INSERT INTO Peliculas (peli_cod, peli_nom,imagen_url) VALUES ("P0002","Batman","/imagenes/Batman.jpg");
+INSERT INTO Peliculas (peli_cod, peli_nom,imagen_url) VALUES ("P0003","Flow","/imagenes/Flow.jpg");
+INSERT INTO Peliculas (peli_cod, peli_nom,imagen_url) VALUES ("P0004","Spiderman","/imagenes/Spiderman.jpg");
+
+
+DROP TABLE IF EXISTS Usuarios;
+CREATE TABLE IF NOT EXISTS Usuarios(
+	ucod char(5) NOT NULL DEFAULT '',
+    PRIMARY KEY (ucod),
+    nombre varchar(20),
+    apellido varchar(30),
+    telefono integer,
+    usuario varchar(50),
+    contrasenia varchar(255),
+    rol varchar(20)
+) ;
+
+INSERT INTO Usuarios (ucod, nombre, apellido, telefono, usuario, contrasenia) VALUES ("U0001","Carlos","Gonzales","987654321","carloxG","carlos123");
+INSERT INTO Usuarios (ucod, nombre, apellido, telefono, usuario, contrasenia) VALUES ("U0002","Maria","Perez","963828263","Maperez","maria123");
+INSERT INTO Usuarios (ucod, nombre, apellido, telefono, usuario, contrasenia) VALUES ("U0003","Jose","Reyes","937651301","JoseeR","jose123");
+
+DROP TABLE IF EXISTS Admins;
+CREATE TABLE IF NOT EXISTS Admins(
+	admin_cod char(5),
+    PRIMARY KEY (admin_cod),
+    admin_user varchar(30),
+    clave varchar(30)
+);
+
+
+select * from Admins;
+select * from Usuarios;
+
+INSERT INTO usuarios (ucod, nombre, apellido, telefono, usuario, contrasenia, rol)
+VALUES ('A0003', 'Admin', 'Cine', '123456789', 'Geo', '$2a$12$L1KTwxu8vGYrm1EmrAfkf.jMV1Jzj7chwVlq3fu/yt4qYjJ.IS1R2', 'ROLE_ADMIN');
+##contrasenia admin123
+INSERT INTO Admins (admin_cod, admin_user, clave) VALUES ("A0001","AdminPOG","12004");
+INSERT INTO Admins (admin_cod, admin_user, clave) VALUES ("A0002","AdminGeorge","12004");
+
+DROP TABLE IF EXISTS Facturas;
+CREATE TABLE IF NOT EXISTS Facturas(
+	fac_cod char(5),
+    PRIMARY KEY (fac_cod),
+    ucod char(5),
+    FOREIGN KEY (ucod) REFERENCES Usuarios(ucod),
+    fecha date
+); 
+
+INSERT INTO Facturas (fac_cod, ucod, fecha) VALUES 
+('F0001', 'U0001', '2023-06-01'),
+('F0002', 'U0001', '2025-12-02'),
+('F0003', 'U0002', '2024-06-01'),
+('F0004', 'U0002', '2024-03-03'),
+('F0005', 'U0003', '2020-06-01'),
+('F0006', 'U0003', '2021-08-04'),
+('F0007', 'U0001', '2025-06-05'),
+('F0008', 'U0001', '2024-01-07'),
+('F0009', 'U0002', '2025-06-06'),
+('F0010', 'U0003', '2023-04-20'),
+('F0011', 'U0003', '2024-02-08');
+
+
+
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS reporte_fac$$
+CREATE PROCEDURE reporte_fac(IN id_usuario char(5))
+BEGIN
+	SELECT u.ucod,nombre, apellido, fecha
+    FROM usuarios u INNER JOIN facturas f ON u.ucod = f.ucod
+    WHERE u.ucod = id_usuario;
+END$$
+DELIMITER ;
+select * from Usuarios;
