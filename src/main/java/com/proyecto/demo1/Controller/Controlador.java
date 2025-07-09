@@ -7,15 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
 
 import com.proyecto.demo1.Model.Admin;
 import com.proyecto.demo1.Model.Usuario;
 import com.proyecto.demo1.Repository.AdminRepository;
 import com.proyecto.demo1.Repository.UsuarioRepository;
-
-import jakarta.servlet.http.HttpSession;
 
 
 
@@ -43,48 +45,26 @@ public class Controlador {
     }
 
     //La primera pagina que aparecera al correr el proyecto
-    @GetMapping("/")
+    @GetMapping("/PRINCIPAL")
     public String vistaInicial(){
         return "PRINCIPAL";
     }
     
-    //VALIDAR USUARIO 
-    @PostMapping("/validar")
-public String validarLogin(@RequestParam String usuario, @RequestParam String clave, Model model, HttpSession session) {
-    // Limpia atributos anteriores para evitar que convivan usuario y admin
-    session.removeAttribute("usuarioLogueado");
-    session.removeAttribute("adminLogueado");
 
-    Admin admin = adminRepo.findByAdminUsuarioAndAdminClave(usuario, clave);
-    if (admin != null) {
-        session.setAttribute("adminLogueado", admin.getAdminUsuario());
-        return "redirect:/admin";
+    @GetMapping("/Bienvenido")
+    public String redirigirPorRol() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+         if (auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"))) {
+            return "redirect:/admin";
+        }
+        if (auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_USER"))) {
+            return "redirect:/PRINCIPAL";
+        }
+        return "redirect:/login?error";
     }
 
-    Usuario user = usuarioRepo.findByUsuarioAndContrasenia(usuario, clave);
-    if (user != null) {
-        session.setAttribute("usuarioLogueado", user.getUsuario());
-        session.setAttribute("ucod", user.getUcod());
-        return "redirect:/PRINCIPAL";
-    }
-
-    model.addAttribute("error", "Usuario o clave incorrectos");
-    return "login";
-}
-
-    @GetMapping("/PRINCIPAL")
-    public String vistaUsuario(HttpSession session, Model model) {
-        String usuario = (String) session.getAttribute("usuarioLogueado");
-        model.addAttribute("usuarioLogueado", usuario);
-        return "PRINCIPAL";
-    }
-
-
-    @GetMapping("/logout")
-    public String cerrarSesion(HttpSession session) {
-        session.invalidate(); // Cierra la sesión
-        return "redirect:/login";
-    }
+   
 
 
 

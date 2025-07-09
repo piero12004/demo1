@@ -8,7 +8,7 @@
 <body class="bg-light">
 <div class="container mt-5">
     <h2 class="text-center">Registrar Nuevo Usuario</h2>
-    <form th:action="@{/guardarUsuario}" th:object="${usuario}" method="post" class="w-50 mx-auto mt-4" enctype="multipart/form-data">
+    <form th:action="@{/guardarUsuario}" th:object="${usuario}" method="post" class="w-50 mx-auto mt-4">
         <div class="mb-3">
             <label class="form-label">Nombre</label>
             <input type="text" th:field="*{nombre}" class="form-control" placeholder="Ingrese nombre de usuario" required>
@@ -18,8 +18,8 @@
             <input type="text" th:field="*{apellido}" class="form-control" placeholder="Ingrese Apellido de usuario" required>
         </div>
         <div class="mb-3">
-            <label class="form-label">Telefono</label>
-            <input type="text" th:field="*{telefono}" class="form-control" placeholder="Ingrese telefono de usuario" required>
+            <label class="form-label">Teléfono</label>
+            <input type="text" th:field="*{telefono}" class="form-control" placeholder="Ingrese teléfono de usuario" required>
         </div>
         <div class="mb-3">
             <label class="form-label">Usuario</label>
@@ -31,10 +31,10 @@
         </div>
         <button type="submit" class="btn btn-success w-100">Registrar</button>
 
-        <!-- Botones de navegación adaptables -->
+        <!-- Navegación -->
         <div class="row mt-3">
             <div class="col-12 col-md-6 mb-2 mb-md-0">
-                <a th:href="@{/PRINCIPAL}" class="btn btn-secondary w-100">Volver a Principal</a>
+                <a th:href="@{\/}" class="btn btn-secondary w-100">Volver al inicio</a>
             </div>
             <div class="col-12 col-md-6">
                 <a th:href="@{/login}" class="btn btn-outline-primary w-100">Iniciar Sesión</a>
@@ -44,6 +44,3 @@
 </div>
 </body>
 </html>
-
-
-

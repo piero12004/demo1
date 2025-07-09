@@ -22,29 +22,32 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" th:href="@{/AgregarPelicula}">Agregar películas</a>
+          <a class="nav-link" th:href="@{/admin/AgregarPelicula}">Agregar películas</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" th:href="@{/listaUsuarios}">Administrar Usuarios</a>
+         <a class="nav-link" th:href="@{/admin/listaUsuarios}">Administrar Usuarios</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" th:href="@{/listaPeliculas}">Administrar películas</a>
+         <a class="nav-link" th:href="@{/admin/listaPeliculas}">Administrar películas</a>
         </li>
       </ul>
 
-      <!-- Mostrar solo si hay un admin logueado -->
-      <div th:if="${adminLogueado != null}" class="d-flex align-items-center">
+        <!-- Mostrar solo si hay un admin logueado -->
+        <div th:if="${adminLogueado != null}" class="d-flex align-items-center">
         <span class="text-light me-3" th:text="'Administrador: ' + ${adminLogueado}"></span>
-        <a class="btn btn-outline-light" th:href="@{/logout}">Cerrar sesión</a>
-      </div>
+        
+        <form th:action="@{/logout}" method="post" class="d-inline">
+            <button type="submit" class="btn btn-outline-light">Cerrar sesión</button>
+        </form>
+        </div>
 
-      <!-- No mostrar nada si no hay admin logueado -->
-      <div th:unless="${adminLogueado != null}">
+        <!-- No mostrar nada si no hay admin logueado -->
+        <div th:unless="${adminLogueado != null}">
         <a class="btn btn-outline-light" th:href="@{/login}">Iniciar sesión</a>
-      </div>
-    </div>
+        </div>
   </div>
 </nav>
+
 
 
 
@@ -62,6 +65,7 @@
                         <th>Telefono</th>
                         <th>Usuario</th>
                         <th>Contraseña</th>
+                        <th>Rol</th>
                         <th>Facturas</th>
                     </tr>
                 </thead>
@@ -72,7 +76,8 @@
                         <td th:text="${u.apellido}"></td>
                         <td th:text="${u.telefono}"></td>
                         <td th:text="${u.usuario}"></td>
-                        <td th:text="${u.contrasenia}"></td>
+                        <td th:text="${#strings.substring(u.contrasenia, 0, 10) + '...'}"></td>
+                        <td th:text="${u.rol}"></td>
                         <td>
                           <a th:href="@{'/facturas/usuario/'+${u.ucod}}" class="btn btn-outline-info btn-sm">Ver Facturas</a>
                         </td>
@@ -86,7 +91,7 @@
             <h4 class="text-center mb-4 text-success">Buscar Usuario por ID</h4>
 
             <!-- Formulario de búsqueda -->
-            <form action="/buscarUsuario" method="post" class="d-flex mb-3">
+            <form th:action="@{/admin/buscarUsuario}" method="post" class="d-flex mb-3">
                 <input type="text" name="id" class="form-control me-2" placeholder="Ingrese ID del usuario" required>
                 <button type="submit" class="btn btn-primary">Buscar</button>
             </form>
@@ -113,11 +118,9 @@
                             <td th:text="${resultadoUsuario.apellido}"></td>
                             <td th:text="${resultadoUsuario.telefono}"></td>
                             <td th:text="${resultadoUsuario.usuario}"></td>
-                            <td th:text="${resultadoUsuario.contrasenia}"></td>
-
-                            <td>
-                                <a th:href="@{/eliminar/{ucod}(ucod=${resultadoUsuario.ucod})}" class="btn btn-danger btn-sm disabled">Eliminar</a>
-                            </td>
+                            <td th:text="${#strings.substring(resultadoUsuario.contrasenia, 0, 10) + '...'}"></td>
+                             <td th:text="${resultadoUsuario.rol}"></td>
+                            
                         </tr>
                     </tbody>
                 </table>

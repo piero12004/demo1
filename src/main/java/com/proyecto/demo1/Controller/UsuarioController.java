@@ -36,19 +36,20 @@ public class UsuarioController {
     // Guardar usuario y redirigir al listado
     @PostMapping("/guardarUsuario")
     public String guardarUsuario(@ModelAttribute Usuario usuario) {
+        usuario.setRol("ROLE_USER");
         usuarioService.guardarUsuario(usuario);
-        return "redirect:/PRINCIPAL"; 
+        return "redirect:/login"; 
     }
 
     // Mostrar lista de usuarios registrados
-    @GetMapping("/listaUsuarios")
+    @GetMapping("/admin/listaUsuarios")
     public String mostrarListaUsuarios(Model model) {
     model.addAttribute("usuarios", usuarioRepository.findAll());
     return "listaUsuarios"; 
     }
 
     //hace una busqueda por id y lo muestra en una tabla sin dejar de mostrar la tabla inicial
-    @PostMapping("/buscarUsuario")
+    @PostMapping("/admin/buscarUsuario")
     public String buscarPorId(@RequestParam String id, Model model){
         Optional <Usuario> usua = usuarioRepository.findById(id);
         model.addAttribute("usuarios", usuarioRepository.findAll());
@@ -58,7 +59,7 @@ public class UsuarioController {
 
 
     //elimina usuario por id/ no funciona porque esta relacionado con facturas
-    @GetMapping("/eliminar/{id}")
+    @GetMapping("/admin/eliminar/{id}")
     public String eliminarUsuario(@PathVariable String id){
         usuarioRepository.deleteById(id);;
         return "redirect:/listaUsuarios";

@@ -55,7 +55,7 @@ public class peliculaController {
         return "agregarPelicula";
     }
 
-    @GetMapping("/listaPeliculas")
+    @GetMapping("/admin/listaPeliculas")
     public String mostrarListaPeliculas(Model model){
         model.addAttribute("peliculas", peliculaRepository.findAll());
         return "listaPeliculas";

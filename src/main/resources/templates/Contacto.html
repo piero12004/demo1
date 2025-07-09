@@ -46,7 +46,9 @@
             <span th:text="${usuarioLogueado}">Usuario</span>
           </a>
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="userDropdown">
-            <li><a class="dropdown-item" th:href="@{/logout}">Cerrar Sesión</a></li>
+            <form th:action="@{/logout}" method="post">
+            <button type="submit" class="dropdown-item">Cerrar Sesión</button>
+          </form>
           </ul>
         </li>
 

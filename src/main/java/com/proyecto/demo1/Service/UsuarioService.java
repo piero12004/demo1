@@ -1,6 +1,7 @@
 package com.proyecto.demo1.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.proyecto.demo1.Model.Usuario;
@@ -11,6 +12,9 @@ public class UsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     //genera nuevo codigo(U000x)
     public void guardarUsuario(Usuario usuario) {
@@ -25,7 +29,8 @@ public class UsuarioService {
             String nuevoCodigo = "U" + String.format("%04d", num); 
             usuario.setUcod(nuevoCodigo);
         }
-
+        String passwordEncriptada = passwordEncoder.encode(usuario.getContrasenia());
+        usuario.setContrasenia(passwordEncriptada);
         usuarioRepository.save(usuario);
     }
 }

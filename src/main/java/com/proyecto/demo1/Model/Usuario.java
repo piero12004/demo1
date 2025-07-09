@@ -26,6 +26,9 @@ public class Usuario {
 
     @Column(name = "contrasenia")
     private String contrasenia;
+    
+    @Column(name = "rol")
+    private String rol;
 
     //getters - setters
     public String getNombre() {
@@ -74,6 +77,14 @@ public class Usuario {
 
     public void setUcod(String ucod) {
         this.ucod = ucod;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 
     

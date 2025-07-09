@@ -28,7 +28,7 @@
           <a class="nav-link" th:href="@{/PRINCIPAL}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" th:href="@{/mostrarPeliculas}">Cartelera</a>
+          <a class="nav-link" th:href="@{/cartelera}">Cartelera</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" th:href="@{/Estrenos}">Estrenos</a>
@@ -45,7 +45,10 @@
             <span th:text="${usuarioLogueado}">Usuario</span>
           </a>
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="userDropdown">
-            <li><a class="dropdown-item" th:href="@{/logout}">Cerrar Sesión</a></li>
+          <form th:action="@{/logout}" method="post">
+            <button type="submit" class="dropdown-item">Cerrar Sesión</button>
+          </form>
+
           </ul>
         </li>
 

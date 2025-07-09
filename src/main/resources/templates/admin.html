@@ -26,27 +26,29 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" th:href="@{/AgregarPelicula}">Agregar películas</a>
+          <a class="nav-link" th:href="@{/admin/AgregarPelicula}">Agregar películas</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" th:href="@{/listaUsuarios}">Administrar Usuarios</a>
+         <a class="nav-link" th:href="@{/admin/listaUsuarios}">Administrar Usuarios</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" th:href="@{/listaPeliculas}">Administrar películas</a>
+         <a class="nav-link" th:href="@{/admin/listaPeliculas}">Administrar películas</a>
         </li>
       </ul>
 
-      <!-- Mostrar solo si hay un admin logueado -->
-      <div th:if="${adminLogueado != null}" class="d-flex align-items-center">
+        <!-- Mostrar solo si hay un admin logueado -->
+        <div th:if="${adminLogueado != null}" class="d-flex align-items-center">
         <span class="text-light me-3" th:text="'Administrador: ' + ${adminLogueado}"></span>
-        <a class="btn btn-outline-light" th:href="@{/logout}">Cerrar sesión</a>
-      </div>
+        
+        <form th:action="@{/logout}" method="post" class="d-inline">
+            <button type="submit" class="btn btn-outline-light">Cerrar sesión</button>
+        </form>
+        </div>
 
-      <!-- No mostrar nada si no hay admin logueado -->
-      <div th:unless="${adminLogueado != null}">
+        <!-- No mostrar nada si no hay admin logueado -->
+        <div th:unless="${adminLogueado != null}">
         <a class="btn btn-outline-light" th:href="@{/login}">Iniciar sesión</a>
-      </div>
-    </div>
+        </div>
   </div>
 </nav>
 
