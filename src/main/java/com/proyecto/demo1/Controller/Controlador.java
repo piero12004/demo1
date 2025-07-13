@@ -14,16 +14,16 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 
-import com.proyecto.demo1.Model.Admin;
+
 import com.proyecto.demo1.Model.Usuario;
-import com.proyecto.demo1.Repository.AdminRepository;
+
 import com.proyecto.demo1.Repository.UsuarioRepository;
 
 
 
 @Controller
 public class Controlador {
-    @Autowired AdminRepository adminRepo;
+    
     @Autowired UsuarioRepository usuarioRepo;
 
     
