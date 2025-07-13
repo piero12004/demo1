@@ -72,16 +72,7 @@ INSERT INTO Facturas (fac_cod, ucod, fecha) VALUES
 ('F0010', 'U0003', '2023-04-20'),
 ('F0011', 'U0003', '2024-02-08');
 
-
-
-
-DELIMITER $$
-DROP PROCEDURE IF EXISTS reporte_fac$$
-CREATE PROCEDURE reporte_fac(IN id_usuario char(5))
-BEGIN
-	SELECT u.ucod,nombre, apellido, fecha
-    FROM usuarios u INNER JOIN facturas f ON u.ucod = f.ucod
-    WHERE u.ucod = id_usuario;
-END$$
-DELIMITER ;
-select * from Usuarios;
+--modificar detalle_factura
+alter table detalle_factura
+add column fecha_funcion date,
+add column horario_funcion varchar(10);
