@@ -11,7 +11,6 @@ import com.proyecto.demo1.Model.Usuario;
 import com.proyecto.demo1.Repository.FacturaRepository;
 import com.proyecto.demo1.Repository.UsuarioRepository;
 import com.proyecto.demo1.dto.FacturaDTO;
-import com.proyecto.demo1.dto.GenerarFacturaDTO;
 
 @Service
 public class FacturaService {

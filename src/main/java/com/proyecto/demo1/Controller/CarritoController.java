@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -13,7 +12,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.proyecto.demo1.Model.Factura;
 import com.proyecto.demo1.Service.DetalleFacturaService;
 import com.proyecto.demo1.Service.FacturaService;
-import com.proyecto.demo1.dto.CompraDTO;
 
 @Controller
 public class CarritoController {
