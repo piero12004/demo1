@@ -76,7 +76,11 @@
                         <td th:text="${u.apellido}"></td>
                         <td th:text="${u.telefono}"></td>
                         <td th:text="${u.usuario}"></td>
-                        <td th:text="${#strings.substring(u.contrasenia, 0, 10) + '...'}"></td>
+                        <td th:if="${#strings.length(u.contrasenia) >= 10}"
+                            th:text="|${#strings.substring(u.contrasenia, 0, 10)}...|"></td>
+                        <td th:if="${#strings.length(u.contrasenia) < 10}"
+                            th:text="${u.contrasenia}"></td>
+
                         <td th:text="${u.rol}"></td>
                         <td>
                           <a th:href="@{'/facturas/usuario/'+${u.ucod}}" class="btn btn-outline-info btn-sm">Ver Facturas</a>
@@ -102,14 +106,14 @@
                 <table class="table table-bordered table-hover">
                     <thead class="table-secondary">
                         <tr>
-                          <th>ID</th>
-                          <th>Nombre usuario</th>
-                          <th>Apellido usuario</th>
-                          <th>Telefono</th>
-                          <th>Usuario</th>
-                          <th>Contraseña</th>
-                          <th>Acciones</th>
-                      </tr>
+                            <th>ID</th>
+                            <th>Nombre usuario</th>
+                            <th>Apellido usuario</th>
+                            <th>Telefono</th>
+                            <th>Usuario</th>
+                            <th>Contraseña</th>
+                            <th>Rol</th> <!-- AÑADIDO -->
+                        </tr>
                     </thead>
                     <tbody>
                         <tr>
@@ -118,9 +122,12 @@
                             <td th:text="${resultadoUsuario.apellido}"></td>
                             <td th:text="${resultadoUsuario.telefono}"></td>
                             <td th:text="${resultadoUsuario.usuario}"></td>
-                            <td th:text="${#strings.substring(resultadoUsuario.contrasenia, 0, 10) + '...'}"></td>
-                             <td th:text="${resultadoUsuario.rol}"></td>
-                            
+                            <td th:if="${#strings.length(resultadoUsuario.contrasenia) >= 10}"
+                                th:text="|${#strings.substring(resultadoUsuario.contrasenia, 0, 10)}...|"></td>
+                            <td th:if="${#strings.length(resultadoUsuario.contrasenia) < 10}"
+                                th:text="${resultadoUsuario.contrasenia}"></td>
+
+                            <td th:text="${resultadoUsuario.rol}"></td> 
                         </tr>
                     </tbody>
                 </table>

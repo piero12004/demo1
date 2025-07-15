@@ -13,22 +13,22 @@ DELIMITER $$
 DROP PROCEDURE IF EXISTS detalle_factura_por_codigo$$
 CREATE PROCEDURE detalle_factura_por_codigo(IN fac_codigo CHAR(5))
 BEGIN
-    SELECT 
-        f.fac_cod AS codFactura,
-        u.nombre AS nombreCliente,
-        u.apellido AS apellidoCliente,
-        p.peli_nom AS tituloPelicula,
-        f.fecha AS fechaFactura,
-        df.asientos AS cantidadAsientos,
-        df.asientos * 15 AS subtotal,
-        df.fecha_funcion AS fechaFuncion,
-        df.horario_funcion AS horarioFuncion
-    FROM 
-        Facturas f
-    INNER JOIN Usuarios u ON f.ucod = u.ucod
-    INNER JOIN DetalleFactura df ON f.fac_cod = df.fac_cod
-    INNER JOIN Peliculas p ON df.peli_cod = p.peli_cod
-    WHERE 
-        f.fac_cod = fac_codigo;
+	SELECT 
+		f.fac_cod AS codFactura,
+		u.nombre AS nombreCliente,
+		u.apellido AS apellidoCliente,
+		p.peli_nom AS tituloPelicula,
+		f.fecha AS fechaFactura,
+		df.asientos AS cantidadAsientos,
+		df.asientos * 15 AS subtotal,
+		df.fecha_funcion,
+		df.horario_funcion
+	FROM 
+		Facturas f
+	INNER JOIN Usuarios u ON f.ucod = u.ucod
+	INNER JOIN DetalleFactura df ON f.fac_cod = df.fac_cod
+	INNER JOIN Peliculas p ON df.peli_cod = p.peli_cod
+	WHERE 
+		f.fac_cod = fac_codigo;
 END$$
 DELIMITER ;

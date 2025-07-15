@@ -14,8 +14,7 @@ public interface PeliculaRepository extends JpaRepository<Pelicula, String> {
 String UltimoCodigo();
 
 //obtener datos (portada y titulo)
-@Query(value = "SELECT new com.proyecto.demo1.dto.peliculaResumenDTO(p.portada, p.titulo) FROM Pelicula p")
+@Query("SELECT new com.proyecto.demo1.dto.peliculaResumenDTO(p.id, p.portada, p.titulo) FROM Pelicula p")
 List<peliculaResumenDTO> obtenerPeliculas();
-
 
 }

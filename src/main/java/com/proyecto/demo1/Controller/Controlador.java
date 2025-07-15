@@ -35,10 +35,7 @@ public class Controlador {
     public String pContacto() {
         return "Contacto";
     }
-    @GetMapping("/cartelera")
-    public String pCartelera() {
-        return "cartelera";
-    }
+    
     @GetMapping("/login")
     public String pLogin() {
         return "login"; 

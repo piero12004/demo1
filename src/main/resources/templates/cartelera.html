@@ -68,46 +68,77 @@
 </nav>
 
 <br>
-
+<!--Titulo-->
   <div class="text-center mb-3">
     <h1 class="display-5">Cartelera </h1>
     <p class="lead mb-0">¡No te pierdas los últimos estrenos y películas en cartelera!</p>
   </div>
-  <!--
-  <script>
-    const tarjetasInfo = [
-      { title: "Avengers", text: "", imgSrc: "/imagenes/Avengers.jpg" },
-      { title: "Intensamente 2", text: "", imgSrc: "/imagenes/Intensamente.jpg" },
-      { title: "Minecraft", text: "", imgSrc: "/imagenes/Minecraft.jpg" },
-      { title: "Nosferatu", text: "", imgSrc: "/imagenes/Nosferatu.jpg" },
-      { title: "Mufasa", text: "", imgSrc: "/imagenes/Mufasa.jpg" },
-      { title: "Spider-man", text: "", imgSrc: "/imagenes/Spiderman.jpg" },
-      { title: "Mi villano Favorito", text: "", imgSrc: "/imagenes/Mi Villano Favorito.jpg" },
-      { title: "Blanca Nieves", text: "", imgSrc: "imagenes/Blanca Nieves.jpg" },
-      { title: "Flow", text: "", imgSrc: "/imagenes/Flow.jpg" },
-      { title: "Soltera * Casada * Viuda * Divorciada", text: "", imgSrc: "/imagenes/Soltera.jpg" },
-      { title: "Venom", text: "", imgSrc: "/imagenes/Venom.jpg" },
-      { title: "Mision Imposible", text: "", imgSrc: "/imagenes/Mision Imposible.jpg" },
-      { title: "SAW", text: "", imgSrc: "/imagenes/Saw.jpg" },
-      { title: "Batman", text: "", imgSrc: "/imagenes/Batman.jpg" },
-      { title: "Sonic", text: "", imgSrc: "/imagenes/Sonic.jpg" },
-      { title: "El conjuro", text: "", imgSrc: "/imagenes/El conjuro.jpg" }
-    ];
-  -->
-    <div class="container my-5">
+  
+  <!-- Cartelera de películas -->
+  <div class="container my-5">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" id="cards-Container">
-        <div th:each="p:${peliculas}"class="col">
-          <div class="card h-100">
-            <img th:src="${p.portada}" class="card-img-top" alt="imagen de pelicula">
-            <div class="card-body">
-              <h5 class="card-title" th:text="${p.titulo}"></h5>
-              <p class="card-text text-truncate"></p>
-              <a th:href="@{/GenerarFactura(ucod=${session.ucod})}" class="btn btn-primary">Comprar</a>
+
+      <!-- Iteración por cada película -->
+      <div th:each="p : ${peliculas}" class="col">
+        <div class="card h-100">
+          <img th:src="${p.portada}" class="card-img-top" alt="imagen de película">
+          <div class="card-body">
+            <h5 class="card-title" th:text="${p.titulo}">Título</h5>
+
+            <!-- Botón para abrir el modal de compra -->
+            <a href="#" class="btn btn-primary"
+              data-bs-toggle="modal"
+              th:attr="data-bs-target='#modalCompra__' + ${p.cod}">
+              Comprar
+            </a>
+          </div>
+        </div>
+
+        <!-- Modal de compra dentro del bucle -->
+        <div class="modal fade" th:id="'modalCompra__' + ${p.cod}" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <form th:action="@{/carrito/confirmar}" method="post">
+                <div class="modal-header">
+                  <h5 class="modal-title">Compra para <span th:text="${p.titulo}"></span></h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                  <input type="hidden" name="ucod" th:value="${usuarioLogueadoId}" />
+                  <input type="hidden" name="peliCod" th:value="${p.cod}" />
+
+                  <div class="mb-3">
+                    <label class="form-label">Cantidad de asientos:</label>
+                    <input type="number" name="asientos" min="1" required class="form-control" />
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Fecha de función:</label>
+                    <input type="date" name="fechaFuncion" required class="form-control" />
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Horario:</label>
+                    <select name="horarioFuncion" class="form-select" required>
+                      <option value="10:00 AM">10:00 AM</option>
+                      <option value="01:00 PM">01:00 PM</option>
+                      <option value="04:00 PM">04:00 PM</option>
+                      <option value="07:00 PM">07:00 PM</option>
+                      <option value="10:00 PM">10:00 PM</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-success">Confirmar compra</button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
+        <!-- Fin del modal -->
+      </div>
+      <!-- Fin th:each -->
     </div>
-    </div>
+  </div>
+
     <!--Panel de confirmacion de Compra-->
     <div th:if="${compraExitosa}" class="position-fixed bottom-0 end-0 p-3" style="z-index: 9999;">
   <div class="toast show bg-success text-white" role="alert" aria-live="assertive" aria-atomic="true">

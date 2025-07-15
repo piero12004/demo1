@@ -11,9 +11,11 @@
             <li class="list-group-item"><strong>Código de Factura:</strong> <span th:text="${detalle.codFactura}"></span></li>
             <li class="list-group-item"><strong>Cliente:</strong> <span th:text="${detalle.nombreCliente + ' ' + detalle.apellidoCliente}"></span></li>
             <li class="list-group-item"><strong>Película:</strong> <span th:text="${detalle.tituloPelicula}"></span></li>
-            <li class="list-group-item"><strong>Fecha:</strong> <span th:text="${detalle.fechaFactura}"></span></li>
-            <li class="list-group-item"><strong>Número de Asientos:</strong> <span th:text="${detalle.cantidadAsientos}"></span></li>
-            <li class="list-group-item"><strong>Subtotal (S/):</strong> <span th:text="${detalle.subtotal}"></span></li>
+            <li class="list-group-item"><strong>Fecha Factura:</strong> <span th:text="${detalle.fechaFactura}"></span></li>
+            <li class="list-group-item"><strong>Fecha Función:</strong> <span th:text="${detalle.fechaFuncion}"></span></li>
+            <li class="list-group-item"><strong>Horario Función:</strong> <span th:text="${detalle.horarioFuncion}"></span></li>
+            <li class="list-group-item"><strong>Asientos:</strong> <span th:text="${detalle.cantidadAsientos}"></span></li>
+            <li class="list-group-item"><strong>Subtotal:</strong> S/. <span th:text="${detalle.subtotal}"></span></li>
         </ul>
     </div>
     <div th:if="${detalle == null}">
@@ -21,5 +23,3 @@
     </div>
 </body>
 </html>
-
-

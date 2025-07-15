@@ -20,30 +20,34 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class FacturaController {
+
     @Autowired
     private FacturaService facturaService;
 
-    //mostrar la tabla general facturas
     @GetMapping("/facturas")
     public String listarFacturas(Model model) {
-        List<FacturaDTO> facturas=facturaService.obtenerFacturasConUsuario();
-        model.addAttribute("facturas",facturas);
+        List<FacturaDTO> facturas = facturaService.obtenerFacturasConUsuario();
+        model.addAttribute("facturas", facturas);
         return "listaFacturas";
     }
-    
-    //mostrar la tabla de un usuario en especifico
+
     @GetMapping("/facturas/usuario/{ucod}")
-    public String verFacturasPorUsuario(@PathVariable String ucod, Model model){
-        List<Factura> facturas = facturaService.obteneFacturasPorUsuario(ucod);
-        System.out.println("Facturas encontradas para " + ucod + ": " + facturas.size());
+    public String verFacturasPorUsuario(@PathVariable String ucod, Model model) {
+        List<Factura> facturas = facturaService.obtenerFacturasPorUsuario(ucod);
         model.addAttribute("facturasUsuario", facturas);
         return "factporU";
     }
 
+    // Generar factura sin detalle (ya no recomendado si usas carrito)
     @GetMapping("/GenerarFactura")
-    public String crearFactura(@RequestParam("ucod") String ucod, RedirectAttributes redirectAttributes){
-        facturaService.crearFactura("",ucod,LocalDate.now());
-        redirectAttributes.addFlashAttribute("compraExitosa", true);
-        return "redirect:/mostrarPeliculas";
+    public String crearFactura(@RequestParam("ucod") String ucod, RedirectAttributes redirectAttributes) {
+        try {
+            facturaService.crearFacturaYRetornar(ucod);
+            redirectAttributes.addFlashAttribute("compraExitosa", true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            redirectAttributes.addFlashAttribute("error", "No se pudo generar la factura: " + e.getMessage());
+        }
+        return "redirect:/cartelera"; // cambia a una ruta válida
     }
 }

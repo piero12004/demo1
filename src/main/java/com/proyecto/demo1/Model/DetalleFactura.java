@@ -1,6 +1,8 @@
 package com.proyecto.demo1.Model;
 
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -9,8 +11,9 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "DetalleFactura")
+@Table(name = "detalle_factura")
 public class DetalleFactura {
+
     @Id
     @Column(name = "cod_detalle")
     private String codDetalle;
@@ -25,6 +28,12 @@ public class DetalleFactura {
 
     @Column(name = "asientos")
     private int asientos;
+
+    @Column(name = "fecha_funcion")
+    private LocalDate fechaFuncion;
+
+    @Column(name = "horario_funcion")
+    private String horarioFuncion;
 
     public String getCodDetalle() {
         return codDetalle;
@@ -56,6 +65,22 @@ public class DetalleFactura {
 
     public void setAsientos(int asientos) {
         this.asientos = asientos;
+    }
+
+    public LocalDate getFechaFuncion() {
+        return fechaFuncion;
+    }
+
+    public void setFechaFuncion(LocalDate fechaFuncion) {
+        this.fechaFuncion = fechaFuncion;
+    }
+
+    public String getHorarioFuncion() {
+        return horarioFuncion;
+    }
+
+    public void setHorarioFuncion(String horarioFuncion) {
+        this.horarioFuncion = horarioFuncion;
     }
 
     
