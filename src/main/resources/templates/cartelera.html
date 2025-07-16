@@ -67,10 +67,9 @@
   </div>
 </nav>
 
-<!-- Inicia React Reloj -->
-<div id="reloj-react"></div>
-<script src="/react/static/js/main.js"></script>
-<!-- Fin React Reloj -->
+<div class="text-center mt-3">
+  <h5>Hora actual (Lima): <span id="hora-lima">Cargando...</span></h5>
+</div>
 
 <br>
 <!--Titulo-->
@@ -157,7 +156,31 @@
   </div>
 </div>
 
-  </script>
+<script>
+  // Inicializa una variable para la hora
+  let fechaHora;
+
+  // Función para mostrar la hora
+  function mostrarHora() {
+    if (!fechaHora) return;
+    const horaFormateada = fechaHora.toLocaleTimeString();
+    document.getElementById("hora-lima").textContent = horaFormateada;
+    fechaHora.setSeconds(fechaHora.getSeconds() + 1); // Incrementa un segundo
+  }
+
+  // Obtener hora inicial desde la API
+  fetch("http://worldtimeapi.org/api/timezone/America/Lima")
+    .then(response => response.json())
+    .then(data => {
+      fechaHora = new Date(data.datetime); // Guardamos la hora recibida
+      mostrarHora(); // Mostramos de inmediato
+      setInterval(mostrarHora, 1000); // Actualiza cada segundo
+    })
+    .catch(error => {
+      console.error("Error al obtener la hora:", error);
+      document.getElementById("hora-lima").textContent = "Error al cargar";
+    });
+</script>
 
   <!-- Footer -->
   <footer class="bg-dark text-light pt-4 pb-2 mt-5">
