@@ -20,7 +20,9 @@ BEGIN
 		p.peli_nom AS tituloPelicula,
 		f.fecha AS fechaFactura,
 		df.asientos AS cantidadAsientos,
-		df.asientos * 15 AS subtotal
+		df.asientos * 15 AS subtotal,
+		df.fecha_funcion,
+		df.horario_funcion
 	FROM 
 		Facturas f
 	INNER JOIN Usuarios u ON f.ucod = u.ucod

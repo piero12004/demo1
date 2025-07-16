@@ -4,20 +4,18 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-
-import com.proyecto.demo1.Repository.AdminRepository;
 import com.proyecto.demo1.Repository.UsuarioRepository;
 
 
 
 @Controller
 public class Controlador {
-    @Autowired AdminRepository adminRepo;
+    
     @Autowired UsuarioRepository usuarioRepo;
 
     
@@ -29,10 +27,7 @@ public class Controlador {
     public String pContacto() {
         return "Contacto";
     }
-    @GetMapping("/cartelera")
-    public String pCartelera() {
-        return "cartelera";
-    }
+    
     @GetMapping("/login")
     public String pLogin() {
         return "login"; 

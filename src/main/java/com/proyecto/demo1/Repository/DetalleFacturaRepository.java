@@ -1,50 +1,23 @@
 package com.proyecto.demo1.Repository;
 
-import java.sql.Date;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 
-import org.springframework.stereotype.Repository;
+import com.proyecto.demo1.Model.DetalleFactura;
 
-import com.proyecto.demo1.dto.DetalleFacturaDTO;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.NoResultException;
-import jakarta.persistence.PersistenceContext;
 
-@Repository
-public class DetalleFacturaRepository {
+public interface DetalleFacturaRepository extends JpaRepository<DetalleFactura, String> {
 
-    @PersistenceContext
-    private EntityManager entityManager; //ejecutar consultas
+    @Query(value = "CALL detalle_factura_por_codigo(:facCod)", nativeQuery = true)
+    List<Object[]> obtenerDetalleFacturaPorCodigo(@Param("facCod") String facCod);
+ 
+    @Query(value = "SELECT cod_detalle FROM detalle_factura ORDER BY cod_detalle DESC LIMIT 1", nativeQuery = true)
+    String obtenerUltimoCodigoDetalle();
 
-    public DetalleFacturaDTO obtenerDetalleFacturaPorCodigo(String facCod) {
-        try {
-            //llamado del procedimiento
-            Object[] resultado = (Object[]) entityManager
-                .createNativeQuery("CALL detalle_factura_por_codigo(:facCod)")
-                .setParameter("facCod", facCod)
-                .getSingleResult();
-
-            if (resultado == null) return null;
-
-            //asignar valores desde el procedimiento al DTO
-            DetalleFacturaDTO dto = new DetalleFacturaDTO();
-            dto.setCodFactura((String) resultado[0]);
-            dto.setNombreCliente((String) resultado[1]);
-            dto.setApellidoCliente((String) resultado[2]);
-            dto.setTituloPelicula((String) resultado[3]);
-            Date date = (Date) resultado[4];
-            dto.setFechaFactura(date.toLocalDate());
-            dto.setCantidadAsientos((Integer) resultado[5]);
-            dto.setSubtotal(((Number) resultado[6]).doubleValue());
-
-            return dto;
-
-        } catch (NoResultException e) {
-            return null;
-        } catch (Exception e) {
-            throw new RuntimeException("Error al obtener el detalle de la factura", e);
-        }
-    }
 }
-

@@ -3,6 +3,7 @@ package com.proyecto.demo1.dto;
 import java.time.LocalDate;
 
 
+
 public class DetalleFacturaDTO {
     private String codFactura;
     private String nombreCliente;
@@ -11,7 +12,22 @@ public class DetalleFacturaDTO {
     private LocalDate fechaFactura;
     private int cantidadAsientos;
     private double subtotal;
+    private LocalDate fechaFuncion;
+    private String horarioFuncion;
     
+    public String getHorarioFuncion() {
+        return horarioFuncion;
+    }
+    public void setHorarioFuncion(String horarioFuncion) {
+        this.horarioFuncion = horarioFuncion;
+    }
+    public LocalDate getFechaFuncion() {
+        return fechaFuncion;
+    }
+    public void setFechaFuncion(LocalDate fechaFuncion) {
+        this.fechaFuncion = fechaFuncion;
+    }
+
     public String getCodFactura() {
         return codFactura;
     }

@@ -1,5 +1,6 @@
 package com.proyecto.demo1.Controller;
 
+import java.security.Principal;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.proyecto.demo1.Model.Pelicula;
+import com.proyecto.demo1.Model.Usuario;
 import com.proyecto.demo1.Repository.PeliculaRepository;
+import com.proyecto.demo1.Repository.UsuarioRepository;
 import com.proyecto.demo1.Service.agregarPelicula;
 
 @Controller
@@ -27,6 +30,9 @@ public class peliculaController {
     @Autowired
     private agregarPelicula agregarPelicula2;
     private final agregarPelicula AgregarPelicula;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     public peliculaController(agregarPelicula AgregarPelicula){
         this.AgregarPelicula = AgregarPelicula;
@@ -43,13 +49,25 @@ public class peliculaController {
         return "cartelera";
     }
 
-    @GetMapping("/mostrarPeliculas")
-    public String mostrarPeliculasCards(Model model){
+    @GetMapping("/cartelera")
+    public String mostrarCartelera(Model model, Principal principal) {
+        // Lista de películas
         model.addAttribute("peliculas", agregarPelicula2.getPeliculas());
+
+        // Si hay usuario logueado, obtener su ucod
+        if (principal != null) {
+            String username = principal.getName(); // nombre de usuario
+            Optional<Usuario> usuarioOpt = usuarioRepository.findByUsuario(username);
+            if (usuarioOpt.isPresent()) {
+                model.addAttribute("usuarioLogueadoId", usuarioOpt.get().getUcod()); // lo que necesita el input hidden
+                model.addAttribute("usuarioLogueado", usuarioOpt.get().getNombre()); // para mostrar el nombre
+            }
+        }
+
         return "cartelera";
     }
 
-    @GetMapping("/admin/AgregarPelicula")
+    @GetMapping("/AgregarPelicula")
     public String mostrarFormularioAgregarPelicula(Model model) {
         model.addAttribute("pelicula", "");
         return "agregarPelicula";
@@ -74,5 +92,7 @@ public class peliculaController {
         peliculaRepository.deleteById(id);
         return "redirect:/listaPeliculas";
     }
+
+
 }
 
