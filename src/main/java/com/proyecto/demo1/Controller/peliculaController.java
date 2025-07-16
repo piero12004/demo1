@@ -67,7 +67,7 @@ public class peliculaController {
         return "cartelera";
     }
 
-    @GetMapping("/AgregarPelicula")
+    @GetMapping("/admin/AgregarPelicula")
     public String mostrarFormularioAgregarPelicula(Model model) {
         model.addAttribute("pelicula", "");
         return "agregarPelicula";

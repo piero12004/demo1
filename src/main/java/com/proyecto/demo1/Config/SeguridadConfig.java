@@ -54,7 +54,7 @@ public AuthenticationManager authenticationManager(AuthenticationConfiguration a
    
 
     @Bean
-    public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
+    public AuthenticationManager authenticationManagerHttp(HttpSecurity http) throws Exception {
         return http
             .getSharedObject(AuthenticationManagerBuilder.class)
             .userDetailsService(userDetailsService)
