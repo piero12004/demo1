@@ -1,25 +1,72 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Detalle de Factura</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>Detalle de Factura</title>
+  <meta charset="UTF-8" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 </head>
-<body class="container mt-5">
-    <h2 class="mb-4">Detalle de Factura</h2>
-    <div th:if="${detalle != null}">
-        <ul class="list-group">
-            <li class="list-group-item"><strong>Código de Factura:</strong> <span th:text="${detalle.codFactura}"></span></li>
-            <li class="list-group-item"><strong>Cliente:</strong> <span th:text="${detalle.nombreCliente + ' ' + detalle.apellidoCliente}"></span></li>
-            <li class="list-group-item"><strong>Película:</strong> <span th:text="${detalle.tituloPelicula}"></span></li>
-            <li class="list-group-item"><strong>Fecha Factura:</strong> <span th:text="${detalle.fechaFactura}"></span></li>
-            <li class="list-group-item"><strong>Fecha Función:</strong> <span th:text="${detalle.fechaFuncion}"></span></li>
-            <li class="list-group-item"><strong>Horario Función:</strong> <span th:text="${detalle.horarioFuncion}"></span></li>
-            <li class="list-group-item"><strong>Asientos:</strong> <span th:text="${detalle.cantidadAsientos}"></span></li>
-            <li class="list-group-item"><strong>Subtotal:</strong> S/. <span th:text="${detalle.subtotal}"></span></li>
-        </ul>
+<body class="bg-light py-5">
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6">
+
+        <div class="card shadow-lg rounded-4">
+          <div class="card-header bg-primary text-white text-center rounded-top-4">
+            <h3 class="mb-0"><i class="bi bi-receipt-cutoff me-2"></i>Detalle de Factura</h3>
+          </div>
+
+          <div class="card-body">
+            <div th:if="${detalle != null}">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <i class="bi bi-hash me-2 text-secondary"></i>
+                  <strong>Código de Factura:</strong> <span th:text="${detalle.codFactura}"></span>
+                </li>
+                <li class="list-group-item">
+                  <i class="bi bi-person-fill me-2 text-secondary"></i>
+                  <strong>Cliente:</strong> <span th:text="${detalle.nombreCliente + ' ' + detalle.apellidoCliente}"></span>
+                </li>
+                <li class="list-group-item">
+                  <i class="bi bi-film me-2 text-secondary"></i>
+                  <strong>Película:</strong> <span th:text="${detalle.tituloPelicula}"></span>
+                </li>
+                <li class="list-group-item">
+                  <i class="bi bi-calendar-date me-2 text-secondary"></i>
+                  <strong>Fecha Factura:</strong> <span th:text="${detalle.fechaFactura}"></span>
+                </li>
+                <li class="list-group-item">
+                  <i class="bi bi-calendar-check me-2 text-secondary"></i>
+                  <strong>Fecha Función:</strong> <span th:text="${detalle.fechaFuncion}"></span>
+                </li>
+                <li class="list-group-item">
+                  <i class="bi bi-clock me-2 text-secondary"></i>
+                  <strong>Horario Función:</strong> <span th:text="${detalle.horarioFuncion}"></span>
+                </li>
+                <li class="list-group-item">
+                  <i class="bi bi-chair me-2 text-secondary"></i>
+                  <strong>Asientos:</strong> <span th:text="${detalle.cantidadAsientos}"></span>
+                </li>
+                <li class="list-group-item">
+                  <i class="bi bi-cash-coin me-2 text-secondary"></i>
+                  <strong>Subtotal:</strong> <span>S/. </span><span th:text="${detalle.subtotal}"></span>
+                </li>
+              </ul>
+            </div>
+
+            <div th:if="${detalle == null}">
+              <div class="alert alert-warning mt-3 text-center">
+                <i class="bi bi-exclamation-triangle me-2"></i>No se encontró información para esta factura.
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
     </div>
-    <div th:if="${detalle == null}">
-        <div class="alert alert-warning">No se encontró información para esta factura.</div>
-    </div>
+  </div>
+
 </body>
 </html>

@@ -6,6 +6,47 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <div class="d-flex flex-column align-items-center me-4">
+      <img src="/imagenes/CINE_HH.jpg" alt="logo" style="width: 60px; height: auto;">
+      <a class="navbar-brand mt-1" th:href="@{/admin}">CINEHH</a>
+    </div>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/admin/AgregarPelicula}">Agregar películas</a>
+        </li>
+        <li class="nav-item">
+         <a class="nav-link" th:href="@{/admin/listaUsuarios}">Administrar Usuarios</a>
+        </li>
+        <li class="nav-item">
+         <a class="nav-link" th:href="@{/admin/listaPeliculas}">Administrar películas</a>
+        </li>
+      </ul>
+
+        <!-- Mostrar solo si hay un admin logueado -->
+        <div th:if="${adminLogueado != null}" class="d-flex align-items-center">
+        <span class="text-light me-3" th:text="'Administrador: ' + ${adminLogueado}"></span>
+        
+        <form th:action="@{/logout}" method="post" class="d-inline">
+            <button type="submit" class="btn btn-outline-light">Cerrar sesión</button>
+        </form>
+        </div>
+
+        <!-- No mostrar nada si no hay admin logueado -->
+        <div th:unless="${adminLogueado != null}">
+        <a class="btn btn-outline-light" th:href="@{/login}">Iniciar sesión</a>
+        </div>
+  </div>
+</nav>
+
 <div class="container mt-5">
     <h3 class="text-primary mb-4">Facturas del Usuario</h3>
 
@@ -34,7 +75,7 @@
         </table>
     </div>
 
-    <a href="/listaUsuarios" class="btn btn-secondary mt-3">Volver a Usuarios</a>
+    <a href="/admin/listaUsuarios" class="btn btn-secondary mt-3">Volver a Usuarios</a>
 </div>
 </body>
 </html>
