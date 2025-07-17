@@ -166,16 +166,17 @@
 
 <script>
   let fechaHora;
-
+  //actualizar a la hora actual
   function mostrarHora() {
     if (!fechaHora) return;
-    const horaFormateada = fechaHora.toLocaleTimeString();
-    document.getElementById("hora-lima").textContent = horaFormateada;
+    const horaFormateada = fechaHora.toLocaleTimeString(); //formato (hh:mm:ss)
+    document.getElementById("hora-lima").textContent = horaFormateada; 
     fechaHora.setSeconds(fechaHora.getSeconds() + 1);
   }
 
+  //llamada del api timeapi
   fetch("https://timeapi.io/api/Time/current/zone?timeZone=America/Lima")
-    .then(response => response.json())
+    .then(response => response.json()) //convertido a JSON
     .then(data => {
       fechaHora = new Date(data.dateTime);
       mostrarHora();
