@@ -26,7 +26,7 @@ BEGIN
 	FROM 
 		Facturas f
 	INNER JOIN Usuarios u ON f.ucod = u.ucod
-	INNER JOIN DetalleFactura df ON f.fac_cod = df.fac_cod
+	INNER JOIN detalle_factura df ON f.fac_cod = df.fac_cod
 	INNER JOIN Peliculas p ON df.peli_cod = p.peli_cod
 	WHERE 
 		f.fac_cod = fac_codigo;

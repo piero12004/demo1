@@ -17,8 +17,7 @@ import com.proyecto.demo1.Repository.UsuarioRepository;
 public class Controlador {
     
     @Autowired UsuarioRepository usuarioRepo;
-
-    
+  
     @GetMapping("/Estrenos")
     public String pEstrenos() {
         return "Estrenos";
@@ -52,10 +51,6 @@ public class Controlador {
         }
         return "redirect:/login?error";
     }
-
-   
-
-
 
 
     @GetMapping("/admin")

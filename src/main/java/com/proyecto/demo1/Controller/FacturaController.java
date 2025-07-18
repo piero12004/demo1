@@ -37,7 +37,7 @@ public class FacturaController {
         return "factporU";
     }
 
-    // Generar factura sin detalle (ya no recomendado si usas carrito)
+    // Generar factura sin detalle 
     @GetMapping("/GenerarFactura")
     public String crearFactura(@RequestParam("ucod") String ucod, RedirectAttributes redirectAttributes) {
         try {
@@ -47,6 +47,6 @@ public class FacturaController {
             e.printStackTrace();
             redirectAttributes.addFlashAttribute("error", "No se pudo generar la factura: " + e.getMessage());
         }
-        return "redirect:/cartelera"; // cambia a una ruta válida
+        return "redirect:/cartelera"; 
     }
 }
